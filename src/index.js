@@ -5,12 +5,12 @@ import { Provider } from 'react-redux';
 
 import store from './store';
 
-import App from './components/App';
+import AppContainer from './containers/AppContainer';
 
 ReactDOM.render(
   <Provider store={store} >
     <Router>
-      <App />
+      <AppContainer />
     </Router>
   </Provider>,
   document.getElementById('root'),
