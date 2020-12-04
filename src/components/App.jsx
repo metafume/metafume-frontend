@@ -1,10 +1,26 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
-const App = () => {
+import MainContainer from '../containers/MainContainer';
+import ProductPage from './ProductPage';
+
+const App = ({ product }) => {
   return (
-    <div className="App">
-    </div>
+    <Switch>
+      <Route exact path='/'>
+        <MainContainer />
+      </Route>
+      <Route path='/product/:id'>
+        <ProductPage product={product}/>
+      </Route>
+      <Redirect to='/' />
+    </Switch>
   );
+};
+
+App.propTypes = {
+  product: PropTypes.object,
 };
 
 export default App;
