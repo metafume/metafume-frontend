@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-const SearchItem = ({ name, productId, imageUrl }) => {
+const SearchItem = ({ brand, name, productId, imageUrl }) => {
   return (
-    <Link to={`/product/${productId}`}>
+    <Link to={`/product/${brand}/${productId}`}>
       <img src={imageUrl}/>
       <h2>{name}</h2>
     </Link>
@@ -12,6 +12,7 @@ const SearchItem = ({ name, productId, imageUrl }) => {
 };
 
 SearchItem.propTypes = {
+  brand: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   productId: PropTypes.string.isRequired,
   imageUrl: PropTypes.string.isRequired,
