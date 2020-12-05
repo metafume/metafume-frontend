@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import useSWR from 'swr';
 
@@ -37,13 +36,22 @@ const ProductPage = () => {
           </div>
         );
       })}
-      <img src={product.imageUrl}/>
+      <img src={product.imageUrl} alt={product.name}/>
+      {product.notes.map((note, idx) => {
+        if (typeof note === 'string') {
+          return <span key={idx}>{note}</span>;
+        } else {
+          return (
+            <img
+              key={idx}
+              src={`${process.env.REACT_APP_STORAGE_URL}${note.path}`}
+              alt={note.name}
+            />
+          );
+        }
+      })}
     </>
   );
-};
-
-ProductPage.propTypes = {
-  product: PropTypes.object,
 };
 
 export default ProductPage;
