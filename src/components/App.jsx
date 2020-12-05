@@ -11,10 +11,10 @@ const App = ({ product }) => {
       <Route exact path='/'>
         <MainContainer />
       </Route>
-      <Route path='/product/:id'>
+      <Route path='/product/:brand/:id'>
         <ProductPage product={product}/>
       </Route>
-      <Redirect to='/' />
+      <Redirect to='/'/>
     </Switch>
   );
 };

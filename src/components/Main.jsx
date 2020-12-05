@@ -19,6 +19,7 @@ const Main = ({ searchList, onSearch, onResetSearch, loading, error }) => {
               return (
                 <SearchItem
                   key={item.productId}
+                  brand={item.brand}
                   name={item.name}
                   productId={item.productId}
                   imageUrl={item.imageUrl}

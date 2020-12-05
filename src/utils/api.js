@@ -7,6 +7,12 @@ const searchKeyword = async keyword => {
   return result.data;
 };
 
+const getProductDetail = async id => {
+  const result = await axios.get('/products/detail', { params: { id } });
+  return result.data;
+};
+
 export default {
   searchKeyword,
+  getProductDetail,
 };
