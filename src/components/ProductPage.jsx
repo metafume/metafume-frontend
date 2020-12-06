@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import useSWR from 'swr';
 
 import api from '../utils/api';
+
+import PerfumeAccordMap from './PerfumeAccordMap';
 
 const fetchProductDetail = async id => {
   await new Promise(res => setTimeout(res, 1000));
@@ -11,14 +13,9 @@ const fetchProductDetail = async id => {
 
 const ProductPage = () => {
   const { brand, id } = useParams();
-
   const { data: product, error } = useSWR(`${brand}/${id}`, fetchProductDetail, {
     shouldRetryOnError: false,
   });
-
-  useEffect(() => {
-    console.log(product);
-  }, [product]);
 
   if (error) return <div>{error.message}</div>;
   if (!product) return <div>loading...</div>;
@@ -27,6 +24,11 @@ const ProductPage = () => {
     <>
       <div>{product.name}</div>
       <p>{product.description}</p>
+      <PerfumeAccordMap
+        name={product.name}
+        imageUrl={product.imageUrl}
+        accords={product.accords}
+      />
       {product.accords.map((accord, idx) => {
         return (
           <div key={idx}>
@@ -44,6 +46,7 @@ const ProductPage = () => {
           return (
             <img
               key={idx}
+              style={{ borderRadius: '50%' }}
               src={`${process.env.REACT_APP_STORAGE_URL}${note.path}`}
               alt={note.name}
             />
