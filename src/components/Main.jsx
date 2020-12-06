@@ -1,11 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import useSWR from 'swr';
+
+import api from '../utils/api';
 
 import SearchBar from './SearchBar';
-import SearchList from './SearchList';
-import SearchItem from './SearchItem';
+import ProductList from './ProductList';
+import Product from './Product';
 
 const Main = ({ searchList, onSearch, onResetSearch, loading, error }) => {
+  const { data: recentViewList } = useSWR('/products/recent', api.getRecentViewList);
+
   return (
     <>
       <div>Metafume</div>
@@ -13,11 +18,11 @@ const Main = ({ searchList, onSearch, onResetSearch, loading, error }) => {
       {loading && <div>loading...</div>}
       {error && <div>{error}</div>}
       {searchList ?
-        <SearchList>
+        <ProductList>
           {searchList.length > 0 ?
             searchList.map(item => {
               return (
-                <SearchItem
+                <Product
                   key={item.productId}
                   brand={item.brand}
                   name={item.name}
@@ -29,10 +34,25 @@ const Main = ({ searchList, onSearch, onResetSearch, loading, error }) => {
             :
             <div>No result..</div>
           }
-        </SearchList>
+        </ProductList>
         :
         <>
-          {!loading && <div>recents</div>}
+          {!loading && <div>Recents</div>}
+          {!loading && recentViewList &&
+            <ProductList>
+              {recentViewList.map(item => {
+                return (
+                  <Product
+                    key={item.productId}
+                    brand={item.brand}
+                    name={item.name}
+                    productId={item.productId}
+                    imageUrl={item.imageUrl}
+                  />
+                );
+              })}
+            </ProductList>
+          }
         </>
       }
     </>

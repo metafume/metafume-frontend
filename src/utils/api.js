@@ -12,7 +12,13 @@ const getProductDetail = async id => {
   return result.data;
 };
 
+const getRecentViewList = async url => {
+  const result = await axios.get(url);
+  return result.data;
+};
+
 export default {
   searchKeyword,
   getProductDetail,
+  getRecentViewList,
 };
