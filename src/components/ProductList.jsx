@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SearchList = ({ children }) => {
+const ProductList = ({ children }) => {
   return (
     <div>{children}</div>
   );
 };
 
-SearchList.propTypes = {
+ProductList.propTypes = {
   children: PropTypes.node,
 };
 
-export default SearchList;
+export default ProductList;

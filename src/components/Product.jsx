@@ -2,20 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-const SearchItem = ({ brand, name, productId, imageUrl }) => {
+const Product = ({ brand, name, productId, imageUrl }) => {
   return (
     <Link to={`/product/${brand}/${productId}`}>
-      <img src={imageUrl}/>
+      <img width='100px' src={imageUrl}/>
       <h2>{name}</h2>
     </Link>
   );
 };
 
-SearchItem.propTypes = {
+Product.propTypes = {
   brand: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   productId: PropTypes.string.isRequired,
   imageUrl: PropTypes.string.isRequired,
 };
 
-export default SearchItem;
+export default Product;
