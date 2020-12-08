@@ -6,7 +6,6 @@ import api from '../utils/api';
 
 import SearchBar from './SearchBar';
 import ProductList from './ProductList';
-import Product from './Product';
 
 const Main = ({ searchList, onSearch, onResetSearch, loading, error }) => {
   const { data: recentViewList } = useSWR('/products/recent', api.getRecentViewList);
@@ -14,47 +13,26 @@ const Main = ({ searchList, onSearch, onResetSearch, loading, error }) => {
   return (
     <>
       <div>Metafume</div>
-      <SearchBar onSearch={onSearch} onResetSearch={onResetSearch}/>
-      {loading && <div>loading...</div>}
-      {error && <div>{error}</div>}
-      {searchList ?
-        <ProductList>
-          {searchList.length > 0 ?
-            searchList.map(item => {
-              return (
-                <Product
-                  key={item.productId}
-                  brand={item.brand}
-                  name={item.name}
-                  productId={item.productId}
-                  imageUrl={item.imageUrl}
-                />
-              );
-            })
-            :
-            <div>No result..</div>
-          }
-        </ProductList>
-        :
-        <>
-          {!loading && <div>Recents</div>}
-          {!loading && recentViewList &&
-            <ProductList>
-              {recentViewList.map(item => {
-                return (
-                  <Product
-                    key={item.productId}
-                    brand={item.brand}
-                    name={item.name}
-                    productId={item.productId}
-                    imageUrl={item.imageUrl}
-                  />
-                );
-              })}
-            </ProductList>
-          }
-        </>
-      }
+      <div>
+        <SearchBar onSearch={onSearch} onResetSearch={onResetSearch}/>
+        {loading && <div>loading...</div>}
+        {error && <div>{error}</div>}
+      </div>
+      <div>
+        {
+          searchList ?
+          <ProductList list={searchList}/>
+          :
+          <div>
+            {!loading && recentViewList &&
+              <>
+                <div>Recents</div>
+                <ProductList list={recentViewList}/>
+              </>
+            }
+          </div>
+        }
+      </div>
     </>
   );
 };

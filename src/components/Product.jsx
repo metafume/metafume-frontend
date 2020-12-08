@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-const Product = ({ brand, name, productId, imageUrl }) => {
+const Product = ({ product }) => {
+  const { brand, name, productId, imageUrl } = product;
   return (
     <Link to={`/product/${brand}/${productId}`}>
       <img width='100px' src={imageUrl}/>
@@ -12,10 +13,12 @@ const Product = ({ brand, name, productId, imageUrl }) => {
 };
 
 Product.propTypes = {
-  brand: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  productId: PropTypes.string.isRequired,
-  imageUrl: PropTypes.string.isRequired,
+  product: PropTypes.shape({
+    brand: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    productId: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default Product;

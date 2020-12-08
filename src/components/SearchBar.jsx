@@ -8,7 +8,6 @@ const SearchBar = ({ onSearch, onResetSearch }) => {
     setValue(ev.target.value);
 
     if (ev.target.value === '') {
-      console.log('deleted');
       onResetSearch();
     }
   };
