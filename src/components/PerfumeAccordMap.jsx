@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { select, drag, randomUniform, easeCircleInOut, easeCubic, easeQuadOut } from 'd3';
+import { select, drag, randomUniform, easeCubic, easeQuadOut, easeCubicOut } from 'd3';
 
 const imageStyleOption = {
   position: 'absolute',
@@ -59,15 +59,17 @@ const AccordMap = ({ accords, imageUrl, name }) => {
       accords.forEach(accord => {
         const circle = svg.append('circle')
           .attr('r', 0)
-          .attr('cx', randomUniform(-200, 500))
-          .attr('cy', randomUniform(20, 260))
+          .attr('cx', 150)
+          .attr('cy', 220)
           .attr('fill', accord.styles.background)
           .attr('opacity', 0)
           .call(dragEventListener)
           .on('mouseover', handleMouseOver)
           .transition()
-          .ease(easeCircleInOut)
-          .duration(randomUniform(1200, 2000))
+          .ease(easeCubicOut)
+          .duration(randomUniform(2000, 10000))
+          .attr('cx', randomUniform(-200, 500))
+          .attr('cy', randomUniform(20, 260))
           .attr('r', 40 * parseInt(accord.styles.width) / 200)
           .attr('opacity', 0.9)
           .on('end', () => circle.call(animateCircle));
