@@ -9,6 +9,8 @@ import Logo from './Logo';
 import SearchBar from './SearchBar';
 import SearchResultList from './SearchResultList';
 import RecentViewList from './RecentViewList';
+import Loading from './Loading';
+import Error from './Error';
 
 const Container = styled.div`
   width: 100%;
@@ -76,8 +78,8 @@ const Main = ({ searchList, onSearch, onResetSearch, loading, error }) => {
         <SearchBar onSearch={onSearch} onResetSearch={onResetSearch}/>
       </SearchWrapper>
       <ResultWrapper>
-        {loading && <div>loading...</div>}
-        {error && <div>{error}</div>}
+        {loading && <Loading />}
+        {error && <Error message={error}/>}
         {
           searchList ?
           <SearchListWrapper>

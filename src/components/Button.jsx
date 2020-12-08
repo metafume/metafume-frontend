@@ -6,7 +6,7 @@ const StyledButton = styled.button`
   all: unset;
   cursor: pointer;
   padding: 10px 30px;
-  font-size: ${({ size }) => size ? `${size}px` : '21px'};
+  font-size: ${({ size }) => size ? `${size}px` : '18px'};
   background-color: ${({ background }) => background ? background : '#000'};
   color: ${({ color }) => color ? color : '#fff'};
 `;
