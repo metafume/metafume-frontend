@@ -1,14 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ProductList = ({ children }) => {
+import Product from './Product';
+
+const ProductList = ({ list }) => {
   return (
-    <div>{children}</div>
+    <div>
+      {
+        list.length > 0 ?
+        list.map(item => {
+          return <Product key={item.productId} product={item}/>;
+        })
+        :
+        <div>No items..</div>
+      }
+    </div>
   );
 };
 
 ProductList.propTypes = {
-  children: PropTypes.node,
+  list: PropTypes.array,
 };
 
 export default ProductList;
