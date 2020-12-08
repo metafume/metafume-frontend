@@ -1,39 +1,100 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import useSWR from 'swr';
 
 import api from '../utils/api';
 
+import Logo from './Logo';
 import SearchBar from './SearchBar';
-import ProductList from './ProductList';
+import SearchResultList from './SearchResultList';
+import RecentViewList from './RecentViewList';
+
+const Container = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const LogoWrapper = styled.div`
+  width: 500px;
+  height: 20vh;
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const SearchWrapper = styled.div`
+  width: 500px;
+  height: 100px;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 42px;
+`;
+
+const ResultWrapper = styled.div`
+  height: 600px;
+  height: 70vh;
+  overflow: auto;
+`;
+
+const RecentViewWrapper = styled.div`
+  position: relative;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+
+  h3 {
+    font-size: 21px;
+    margin-left: 36px;
+    margin-bottom: 24px;
+    width: 400px;
+  }
+`;
+
+const SearchListWrapper = styled.div`
+  position: relative;
+  width: 100vw;
+`;
 
 const Main = ({ searchList, onSearch, onResetSearch, loading, error }) => {
   const { data: recentViewList } = useSWR('/products/recent', api.getRecentViewList);
 
   return (
-    <>
-      <div>Metafume</div>
-      <div>
+    <Container>
+      <LogoWrapper>
+        <Logo size={42}/>
+      </LogoWrapper>
+      <SearchWrapper>
         <SearchBar onSearch={onSearch} onResetSearch={onResetSearch}/>
+      </SearchWrapper>
+      <ResultWrapper>
         {loading && <div>loading...</div>}
         {error && <div>{error}</div>}
-      </div>
-      <div>
         {
           searchList ?
-          <ProductList list={searchList}/>
+          <SearchListWrapper>
+            <SearchResultList list={searchList}/>
+          </SearchListWrapper>
           :
-          <div>
+          <RecentViewWrapper>
             {!loading && recentViewList &&
               <>
-                <div>Recents</div>
-                <ProductList list={recentViewList}/>
+                <h3>Recent views</h3>
+                <RecentViewList list={recentViewList}/>
               </>
             }
-          </div>
+          </RecentViewWrapper>
         }
-      </div>
-    </>
+      </ResultWrapper>
+    </Container>
   );
 };
 

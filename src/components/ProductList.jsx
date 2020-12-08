@@ -3,23 +3,24 @@ import PropTypes from 'prop-types';
 
 import Product from './Product';
 
-const ProductList = ({ list }) => {
+const ProductList = ({ list, mode }) => {
   return (
-    <div>
+    <>
       {
         list.length > 0 ?
         list.map(item => {
-          return <Product key={item.productId} product={item}/>;
+          return <Product key={item.productId} product={item} mode={mode}/>;
         })
         :
         <div>No items..</div>
       }
-    </div>
+    </>
   );
 };
 
 ProductList.propTypes = {
   list: PropTypes.array,
+  mode: PropTypes.string,
 };
 
 export default ProductList;
