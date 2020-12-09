@@ -136,41 +136,41 @@ const ProductPage = () => {
       </TextWrapper>
       <AccordsWrapper>
         <h3>Accords</h3>
-      {product.accords.map((accord, idx) => {
-        return (
-            <div
-              key={idx}
-              style={{
-                color: accord.styles.color,
-                backgroundColor: accord.styles.background,
-                width: `${200 * parseInt(accord.styles.width) / 100}px`,
-                height: `${200 * parseInt(accord.styles.width) / 100}px`,
-              }}>
-              {accord.name}
-            </div>
-        );
-      })}
+        {product.accords.map((accord, idx) => {
+          return (
+              <div
+                key={idx}
+                style={{
+                  color: accord.styles.color,
+                  backgroundColor: accord.styles.background,
+                  width: `${200 * parseInt(accord.styles.width) / 100}px`,
+                  height: `${200 * parseInt(accord.styles.width) / 100}px`,
+                }}>
+                {accord.name}
+              </div>
+          );
+        })}
       </AccordsWrapper>
       <NotesWrapper>
         <h3>Notes</h3>
-      {product.notes.map((note, idx) => {
-        if (typeof note === 'string') {
-            return <div key={idx}>{note}</div>;
-        } else {
-          return (
-            <img
-              key={idx}
-                style={{
-                  borderRadius: '36px',
-                  width: '260px',
-                  margin: '24px',
-                }}
-              src={`${process.env.REACT_APP_STORAGE_URL}${note.path}`}
-              alt={note.name}
-            />
-          );
-        }
-      })}
+        {product.notes.map((note, idx) => {
+          if (typeof note === 'string') {
+              return <div key={idx}>{note}</div>;
+          } else {
+            return (
+              <img
+                key={idx}
+                  style={{
+                    borderRadius: '36px',
+                    width: '260px',
+                    margin: '24px',
+                  }}
+                src={`${process.env.REACT_APP_STORAGE_URL}${note.path}`}
+                alt={note.name}
+              />
+            );
+          }
+        })}
       </NotesWrapper>
     </>
   );
