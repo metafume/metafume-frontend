@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import Main from '../components/Main';
 
-import { deleteSearchList, addSearchListStart } from '../actions/actionCreator';
+import { addSearchListStart, deleteSearchList } from '../reducers/searchList';
 
 const mapStateToProps = state => ({
   searchList: state.searchList.list,
