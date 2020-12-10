@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const LOGIN_USER_START = 'LOGIN_USER_START';
 const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS';
 const LOGIN_USER_FAILURE = 'LOGIN_USER_FAILURE';
+const LOGOUT_USER = 'LOGOUT_USER';
 
 const initialState = {
   profile: null,
@@ -36,6 +37,9 @@ const reducers = {
     }),
     prepare: error => ({ payload: { error }}),
   },
+  [LOGOUT_USER]: {
+    reducer: state => ({ ...state, profile: null }),
+  },
 };
 
 const userSlice = createSlice({
@@ -47,5 +51,6 @@ const userSlice = createSlice({
 export const loginStart = userSlice.actions[LOGIN_USER_START];
 export const loginSuccess = userSlice.actions[LOGIN_USER_SUCCESS];
 export const loginFailure = userSlice.actions[LOGIN_USER_FAILURE];
+export const logout = userSlice.actions[LOGOUT_USER];
 
 export default userSlice.reducer;

@@ -14,7 +14,7 @@ import MyPage from './MyPage';
 import ProductPage from './ProductPage';
 import FloatingButton from './FloatingButton';
 
-const App = ({ onLoad, onLogin, user }) => {
+const App = ({ onLoad, onLogin, onLogout, user }) => {
   const history = useHistory();
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const App = ({ onLoad, onLogin, user }) => {
           <Login onLogin={onLogin} />
         </Route>
         <Route path='/mypage/:id'>
-          {user ? <MyPage user={user} /> : <Redirect to='/login'/>}
+          {user ? <MyPage user={user} onLogout={onLogout}/> : <Redirect to='/login'/>}
         </Route>
         <Redirect to='/'/>
       </Switch>
@@ -51,8 +51,9 @@ const App = ({ onLoad, onLogin, user }) => {
 };
 
 App.propTypes = {
-  onLogin: PropTypes.func.isRequired,
   onLoad: PropTypes.func.isRequired,
+  onLogin: PropTypes.func.isRequired,
+  onLogout: PropTypes.func.isRequired,
   user: PropTypes.object,
 };
 

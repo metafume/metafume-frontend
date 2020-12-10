@@ -1,6 +1,6 @@
 import axios from 'axios';
 import firebase from './firebase';
-import { setCookie } from './helpers';
+import { setToken } from './helpers';
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
@@ -33,7 +33,7 @@ const googleLogin = async () => {
 
   const { data } = await axios.post('/users/login/google', userInfo);
 
-  setCookie(data.token);
+  setToken(data.token);
 
   return data.user;
 };

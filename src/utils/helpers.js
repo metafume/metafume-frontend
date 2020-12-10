@@ -1,4 +1,4 @@
-export const getCookie = () => {
+export const getToken = () => {
   const value = document.cookie
     .split(';')
     .map(value => value.split('='))
@@ -8,7 +8,10 @@ export const getCookie = () => {
   return value?.[1];
 };
 
-export const setCookie = token => {
+export const setToken = token => {
   document.cookie = `x-access-token=${token}`;
 };
 
+export const deleteToken = () => {
+  document.cookie = 'x-access-token=; Max-Age=0';
+};
