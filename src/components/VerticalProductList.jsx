@@ -6,21 +6,24 @@ import ProductList from './ProductList';
 
 const Wrapper = styled.div`
   width: 100vw;
+  height: 100%;
   height: inherit;
   display: flex;
-  overflow-x: auto;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
 `;
 
-const RecentViewList = ({ list }) => {
+const VerticalProductList = ({ list }) => {
   return (
     <Wrapper>
-      <ProductList list={list}/>
+      <ProductList list={list} mode='search'/>
     </Wrapper>
   );
 };
 
-RecentViewList.propTypes = {
+VerticalProductList.propTypes = {
   list: PropTypes.array,
 };
 
-export default RecentViewList;
+export default VerticalProductList;

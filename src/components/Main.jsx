@@ -7,8 +7,8 @@ import api from '../utils/api';
 
 import Logo from './Logo';
 import SearchBar from './SearchBar';
-import SearchResultList from './SearchResultList';
-import RecentViewList from './RecentViewList';
+import VerticalProductList from './VerticalProductList';
+import HorizontalProductList from './HorizontalProductList';
 import Loading from './Loading';
 import Error from './Error';
 
@@ -87,14 +87,14 @@ const Main = ({ searchList, onSearch, onResetSearch, loading, error }) => {
         {
           searchList ?
           <SearchListWrapper>
-            <SearchResultList list={searchList}/>
+            <VerticalProductList list={searchList}/>
           </SearchListWrapper>
           :
           <RecentViewWrapper>
             {!loading && recentViewList &&
               <>
                 <h3>Recent views</h3>
-                <RecentViewList list={recentViewList}/>
+                <HorizontalProductList list={recentViewList}/>
               </>
             }
           </RecentViewWrapper>
