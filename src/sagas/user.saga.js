@@ -10,7 +10,7 @@ function* login({ payload }) {
     let user = null;
 
     if (token) user = yield api.tokenLogin(token);
-    else yield user = yield api.googleLogin();
+    else user = yield api.googleLogin();
 
     yield put(actions.loginSuccess(user));
   } catch (err) {
