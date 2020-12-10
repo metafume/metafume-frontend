@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const StyledButton = styled.button`
   all: unset;
   cursor: pointer;
-  padding: 10px 30px;
+  padding: 16px 26px;
   font-size: ${({ size }) => size ? `${size}px` : '18px'};
   background-color: ${({ background }) => background ? background : '#000'};
   color: ${({ color }) => color ? color : '#fff'};

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Logo from './Logo';
@@ -10,30 +10,37 @@ const Wrapper = styled.header`
   width: 100%;
   height: 80px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
 
   a:nth-child(2) {
-    position: relative;
-    left: -32px;
+    position: absolute;
+    width: 200px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  span {
+    position: absolute;
+    right: 24px;
+    color: #00b894;
   }
 `;
 
-const StyledLink = styled(Link)`
-  all: unset;
-  cursor: pointer;
-  margin-left: 24px;
-  color: gray;
-`;
-
-const Header = () => {
+const Header = ({ userName }) => {
   return (
     <Wrapper>
-      <StyledLink to='/'>Back</StyledLink>
-      <Logo size={21}/>
       <div />
+      <Logo size={21}/>
+      <span>{userName && `Hi, ${userName}`}</span>
     </Wrapper>
   );
+};
+
+Header.propTypes = {
+  userName: PropTypes.string,
 };
 
 export default Header;
