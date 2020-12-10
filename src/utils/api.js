@@ -1,4 +1,6 @@
 import axios from 'axios';
+import firebase from './firebase';
+import { setCookie } from './helpers';
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
@@ -17,8 +19,34 @@ const getRecentViewList = async url => {
   return result.data;
 };
 
+const googleLogin = async () => {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+
+  const { user } = await firebase.auth().signInWithPopup(provider);
+
+  const userInfo = {
+    email: user.email,
+    name: user.displayName,
+    photoUrl: user.photoURL,
+  };
+
+  const { data } = await axios.post('/users/login/google', userInfo);
+
+  setCookie(data.token);
+
+  return data.user;
+};
+
+const tokenLogin = async token => {
+  const { data } = await axios.post('/users/login/token', { token });
+  return data.user;
+};
+
 export default {
   searchKeyword,
   getProductDetail,
   getRecentViewList,
+  googleLogin,
+  tokenLogin,
 };
