@@ -34,7 +34,6 @@ const googleLogin = async () => {
   const { data } = await axios.post('/users/login/google', userInfo);
 
   setToken(data.token);
-
   return data.user;
 };
 
@@ -43,10 +42,26 @@ const tokenLogin = async token => {
   return data.user;
 };
 
+const addFavorite = async (userId, productId, token) => {
+  const result = await axios.post(`/users/${userId}/favorite/${productId}`, null, {
+    headers: { 'x-access-token': token } },
+  );
+  return result.data;
+};
+
+const deleteFavorite = async (userId, productId, token) => {
+  const result = await axios.delete(`/users/${userId}/favorite/${productId}`, {
+    headers: { 'x-access-token': token } },
+  );
+  return result.data;
+};
+
 export default {
   searchKeyword,
   getProductDetail,
   getRecentViewList,
   googleLogin,
   tokenLogin,
+  addFavorite,
+  deleteFavorite,
 };
