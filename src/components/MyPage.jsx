@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Button from './Button';
+import HorizontalProductList from './HorizontalProductList';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -12,7 +13,7 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
 
-  img {
+  .thumnail {
     width: 100px;
     border-radius: 50%;
     margin-bottom: 24px;
@@ -26,6 +27,15 @@ const Wrapper = styled.div`
   p {
     margin-bottom: 42px;
   }
+
+  button {
+    margin-bottom: 42px;
+  }
+
+  h3 {
+    font-size: 21px;
+    margin-top: 24px;
+  }
 `;
 
 const MyPage = ({ onLogout, user }) => {
@@ -33,10 +43,12 @@ const MyPage = ({ onLogout, user }) => {
 
   return (
     <Wrapper>
-      <img src={photoUrl} />
+      <img className='thumnail' src={photoUrl} />
       <h1>{name}</h1>
       <p>{email}</p>
       <Button onClick={onLogout}>Logout</Button>
+      <h3>My favorites</h3>
+      <HorizontalProductList list={user.myFavorite}/>
     </Wrapper>
   );
 };
