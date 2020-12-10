@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import useSWR from 'swr';
@@ -68,6 +68,10 @@ const SearchListWrapper = styled.div`
 
 const Main = ({ searchList, onSearch, onResetSearch, loading, error }) => {
   const { data: recentViewList } = useSWR('/products/recent', api.getRecentViewList);
+
+  useEffect(() => {
+    return () => onResetSearch();
+  }, []);
 
   return (
     <Container>

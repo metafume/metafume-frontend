@@ -7,12 +7,10 @@ const ProductList = ({ list, mode }) => {
   return (
     <>
       {
-        list.length > 0 ?
+        list.length > 0 &&
         list.map(item => {
           return <Product key={item.productId} product={item} mode={mode}/>;
         })
-        :
-        <div>No items..</div>
       }
     </>
   );
