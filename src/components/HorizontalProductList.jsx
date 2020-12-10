@@ -6,24 +6,20 @@ import ProductList from './ProductList';
 
 const Wrapper = styled.div`
   width: 100vw;
-  height: 100%;
-  height: inherit;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow-y: auto;
+  overflow-x: auto;
 `;
 
-const SearchList = ({ list }) => {
+const HorizontalProductList = ({ list }) => {
   return (
     <Wrapper>
-      <ProductList list={list} mode='search'/>
+      <ProductList list={list}/>
     </Wrapper>
   );
 };
 
-SearchList.propTypes = {
+HorizontalProductList.propTypes = {
   list: PropTypes.array,
 };
 
-export default SearchList;
+export default HorizontalProductList;

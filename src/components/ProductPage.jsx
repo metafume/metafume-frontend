@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import useSWR from 'swr';
@@ -9,6 +10,8 @@ import Header from './Header';
 import Loading from './Loading';
 import Error from './Error';
 import PerfumeAccordMap from './PerfumeAccordMap';
+
+import { FaRegHeart, FaHeart } from 'react-icons/fa';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -21,7 +24,7 @@ const Wrapper = styled.div`
 
 const TextWrapper = styled.div`
   width: 100%;
-  padding: 70px 24px 100px 24px;
+  padding: 70px 0 100px 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,15 +33,15 @@ const TextWrapper = styled.div`
   color: #4d453e;
 
   h1 {
-    position: relative;
-    margin-left: -32px;
     font-size: 32px;
     margin-bottom: 38px;
   }
 
+  h6 {
+    margin-bottom: 16px;
+  }
+
   p {
-    position: relative;
-    margin-left: -36px;
     width: 800px;
     line-height: 21px;
   }
@@ -105,16 +108,41 @@ const NotesWrapper = styled.div`
   }
 `;
 
+const heartIconStyleOptions = {
+  marginBottom: '24px',
+  cursor: 'pointer',
+};
+
 const fetchProductDetail = async id => {
   await new Promise(res => setTimeout(res, 1000));
   return api.getProductDetail(id);
 };
 
-const ProductPage = () => {
-  const { brand, id } = useParams();
-  const { data: product, error } = useSWR(`${brand}/${id}`, fetchProductDetail, {
+const ProductPage = ({ onAdd, onDelete, user }) => {
+  const [isFavorite, setFavorite] = useState(false);
+  const { brand, id: productId } = useParams();
+  const { data: product, error } = useSWR(`${brand}/${productId}`, fetchProductDetail, {
     shouldRetryOnError: false,
   });
+
+  useEffect(() => {
+    if (!user) return;
+
+    const isMyFavorite =
+      user.myFavorite.some(product => product?.productId === productId);
+
+    if (isMyFavorite) setFavorite(true);
+  }, [user]);
+
+  const handleOnFavorite = () => {
+    if (isFavorite) {
+      setFavorite(false);
+      onDelete(user._id, productId);
+    } else {
+      setFavorite(true);
+      onAdd(user._id, productId);
+    }
+  };
 
   if (error) return <Wrapper><Error message={error?.message} back/></Wrapper>;
   if (!product) return <Wrapper><Loading /></Wrapper>;
@@ -131,6 +159,21 @@ const ProductPage = () => {
         background={product.accords[0].styles.background}
         color={product.accords[0].styles.color}
       >
+        {
+          user && (isFavorite ?
+          <FaHeart
+            style={heartIconStyleOptions}
+            size={28}
+            onClick={handleOnFavorite}
+          />
+          :
+          <FaRegHeart
+            style={heartIconStyleOptions}
+            size={28}
+            onClick={handleOnFavorite}
+          />)
+        }
+        <h6>{product.brand}</h6>
         <h1>{product.name}</h1>
         <p>{product.description}</p>
       </TextWrapper>
@@ -174,6 +217,12 @@ const ProductPage = () => {
       </NotesWrapper>
     </>
   );
+};
+
+ProductPage.propTypes = {
+  onAdd: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  user: PropTypes.object,
 };
 
 export default ProductPage;
