@@ -5,7 +5,6 @@ import App from '../components/App';
 import { loginStart, logout } from '../reducers/user';
 import { deleteToken, getToken } from '../utils/helpers';
 
-
 const mapStateToProps = state => ({
   user: state.user?.profile,
 });
