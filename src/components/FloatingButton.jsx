@@ -21,7 +21,7 @@ const FloatingButton = ({ user }) => {
   const history = useHistory();
 
   const handleOnClickMyPage = () => {
-    if (user) history.push('/mypage/1234');
+    if (user) history.push(`/mypage/${user._id}`);
     else history.push('/login');
   };
 
