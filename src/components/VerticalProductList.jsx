@@ -6,7 +6,6 @@ import ProductList from './ProductList';
 
 const Wrapper = styled.div`
   width: 100vw;
-  height: 100%;
   height: inherit;
   display: flex;
   flex-direction: column;
