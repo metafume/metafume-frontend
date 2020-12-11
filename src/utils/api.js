@@ -9,8 +9,8 @@ const searchKeyword = async keyword => {
   return result.data;
 };
 
-const getProductDetail = async id => {
-  const result = await axios.get('/products/detail', { params: { id } });
+const getProductDetail = async path => {
+  const result = await axios.get('/products/detail', { params: { id: path } });
   return result.data;
 };
 
@@ -56,6 +56,12 @@ const deleteFavorite = async (userId, productId, token) => {
   return result.data;
 };
 
+const getRecommendList = async (userId, token) => {
+  const result = await axios.get(`/users/${userId}/favorite/recommend`, {
+    headers: { 'x-access-token': token } });
+  return result.data;
+};
+
 export default {
   searchKeyword,
   getProductDetail,
@@ -64,4 +70,5 @@ export default {
   tokenLogin,
   addFavorite,
   deleteFavorite,
+  getRecommendList,
 };

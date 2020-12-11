@@ -113,9 +113,9 @@ const heartIconStyleOptions = {
   cursor: 'pointer',
 };
 
-const fetchProductDetail = async id => {
+const fetchProductDetail = async path => {
   await new Promise(res => setTimeout(res, 1000));
-  return api.getProductDetail(id);
+  return api.getProductDetail(path);
 };
 
 const ProductPage = ({ onAdd, onDelete, user }) => {
