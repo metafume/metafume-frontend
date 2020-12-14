@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -20,14 +21,27 @@ const StyledInput = styled.input`
 `;
 
 const SearchBar = ({ onSearch, onResetSearch }) => {
+  const location = useLocation();
   const [value, setValue] = useState('');
+
+  useEffect(() => {
+    if (!location.search) return;
+
+    const queries = location.search?.split('?');
+    queries.shift();
+
+    if (queries.length <= 0) return;
+
+    const keyword = queries
+      .find(query => query.split('=')[0] === 'keyword')
+      ?.split('=');
+
+    if (keyword?.[1]) setValue(keyword[1]);
+  }, []);
 
   const handleOnChange = ev => {
     setValue(ev.target.value);
-
-    if (ev.target.value === '') {
-      onResetSearch();
-    }
+    if (ev.target.value === '') onResetSearch();
   };
 
   const handleOnSubmit = ev => {
@@ -53,7 +67,7 @@ const SearchBar = ({ onSearch, onResetSearch }) => {
 
 SearchBar.propTypes = {
   onSearch: PropTypes.func.isRequired,
-  onResetSearch: PropTypes.func,
+  onResetSearch: PropTypes.func.isRequired,
 };
 
 export default SearchBar;

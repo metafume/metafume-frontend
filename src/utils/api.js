@@ -62,6 +62,12 @@ const getRecommendList = async (userId, token) => {
   return result.data;
 };
 
+const subscribeMail = async (userId, token, option) => {
+  const result = await axios.put(`/users/${userId}/subscribe`, { option }, {
+    headers: { 'x-access-token': token } });
+  return result.data;
+};
+
 export default {
   searchKeyword,
   getProductDetail,
@@ -71,4 +77,5 @@ export default {
   addFavorite,
   deleteFavorite,
   getRecommendList,
+  subscribeMail,
 };
