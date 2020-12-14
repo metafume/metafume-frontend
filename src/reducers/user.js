@@ -4,9 +4,9 @@ const LOGIN_USER_START = 'LOGIN_USER_START';
 const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS';
 const LOGIN_USER_FAILURE = 'LOGIN_USER_FAILURE';
 const LOGOUT_USER = 'LOGOUT_USER';
-
 const ADD_USER_FAVORITE = 'ADD_USER_FAVORITE';
 const DELETE_USER_FAVORITE = 'DELETE_USER_FAVORITE';
+const UPDATE_SUBSCRIBTION = 'UPDATE_SUBSCRIBTION';
 
 const initialState = {
   profile: null,
@@ -63,6 +63,16 @@ const reducers = {
     }),
     prepare: productId => ({ payload: { productId }}),
   },
+  [UPDATE_SUBSCRIBTION]: {
+    reducer: (state, action) => ({
+      ...state,
+      profile: {
+        ...state.profile,
+        isSubscribed: action.payload.isSubscribed,
+      },
+    }),
+    prepare: option => ({ payload: { isSubscribed: option }}),
+  },
 };
 
 const userSlice = createSlice({
@@ -77,5 +87,6 @@ export const loginFailure = userSlice.actions[LOGIN_USER_FAILURE];
 export const logout = userSlice.actions[LOGOUT_USER];
 export const addFavorite = userSlice.actions[ADD_USER_FAVORITE];
 export const deleteFavorite = userSlice.actions[DELETE_USER_FAVORITE];
+export const updateSubscription = userSlice.actions[UPDATE_SUBSCRIBTION];
 
 export default userSlice.reducer;

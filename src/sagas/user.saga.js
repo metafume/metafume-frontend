@@ -1,6 +1,5 @@
 import { takeLatest, put, all, call } from 'redux-saga/effects';
 import * as actions from '../reducers/user';
-import { deleteToken, getToken } from '../utils/helpers';
 
 import api from '../utils/api';
 
@@ -14,8 +13,6 @@ function* login({ payload }) {
 
     yield put(actions.loginSuccess(user));
   } catch (err) {
-    const token = getToken();
-    if (token) deleteToken();
     yield put(actions.loginFailure(err));
   }
 }
