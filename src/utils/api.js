@@ -1,7 +1,7 @@
 import axios from 'axios';
 import firebase from './firebase';
 
-import { setToken } from './helpers';
+import { setToken, getToken } from './helpers';
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
@@ -43,29 +43,29 @@ const tokenLogin = async token => {
   return data.user;
 };
 
-const addFavorite = async (userId, productId, token) => {
+const addFavorite = async (userId, productId) => {
   const result = await axios.post(`/users/${userId}/favorite/${productId}`, null, {
-    headers: { 'x-access-token': token } },
+    headers: { 'x-access-token': getToken() } },
   );
   return result.data;
 };
 
-const deleteFavorite = async (userId, productId, token) => {
+const deleteFavorite = async (userId, productId) => {
   const result = await axios.delete(`/users/${userId}/favorite/${productId}`, {
-    headers: { 'x-access-token': token } },
+    headers: { 'x-access-token': getToken() } },
   );
   return result.data;
 };
 
-const getRecommendList = async (userId, token) => {
+const getRecommendList = async userId => {
   const result = await axios.get(`/users/${userId}/favorite/recommend`, {
-    headers: { 'x-access-token': token } });
+    headers: { 'x-access-token': getToken() } });
   return result.data;
 };
 
-const subscribeMail = async (userId, token, option) => {
+const subscribeMail = async (userId, option) => {
   const result = await axios.put(`/users/${userId}/subscribe`, { option }, {
-    headers: { 'x-access-token': token } });
+    headers: { 'x-access-token': getToken() } });
   return result.data;
 };
 

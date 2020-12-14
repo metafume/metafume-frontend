@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import useSWR from 'swr';
 
 import api from '../utils/api';
-import { getToken } from '../utils/helpers';
 
 import Button from './Button';
 import HorizontalProductList from './HorizontalProductList';
@@ -57,14 +56,9 @@ const ListWrapper = styled.div`
   }
 `;
 
-const fetchRecommendList = async userId => {
-  const token = getToken();
-  return api.getRecommendList(userId, token);
-};
-
 const MyPage = ({ onLogout, onSubscribe, user }) => {
   const { _id: userId, name, email, photoUrl, isSubscribed, myFavorite } = user;
-  const { data: recommendList } = useSWR(userId, fetchRecommendList, {
+  const { data: recommendList } = useSWR(userId, api.getRecommendList, {
     shouldRetryOnError: false,
   });
 

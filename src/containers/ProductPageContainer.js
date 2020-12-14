@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 
 import api from '../utils/api';
 import * as actions from '../reducers/user';
-import { getToken } from '../utils/helpers';
 
 import ProductPage from '../components/ProductPage';
 
@@ -12,13 +11,11 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onAdd: async (userId, productId) => {
-    const token = getToken();
-    const { product } = await api.addFavorite(userId, productId, token);
+    const { product } = await api.addFavorite(userId, productId);
     dispatch(actions.addFavorite(product));
   },
   onDelete: async (userId, productId) => {
-    const token = getToken();
-    await api.deleteFavorite(userId, productId, token);
+    await api.deleteFavorite(userId, productId);
     dispatch(actions.deleteFavorite(productId));
   },
 });

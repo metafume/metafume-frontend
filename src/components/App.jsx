@@ -24,13 +24,12 @@ const App = ({
   error,
 }) => {
   useEffect(() => {
-    onLoad();
+    onLoad(getToken());
   }, []);
 
   useEffect(() => {
     if (!error) return;
-    const token = getToken();
-    if (token) deleteToken();
+    if (getToken()) deleteToken();
   }, [error]);
 
   return (
