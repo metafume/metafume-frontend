@@ -1,6 +1,6 @@
 import { takeLatest, put, all, call } from 'redux-saga/effects';
-import * as actions from '../reducers/user';
 
+import * as actions from '../reducers/user';
 import api from '../utils/api';
 
 function* login({ payload }) {

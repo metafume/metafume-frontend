@@ -7,13 +7,13 @@ import { Reset } from 'styled-reset';
 import theme from './styles/theme';
 import { getToken, deleteToken } from '../utils/helpers';
 
+import GlobalStyle from './styles/GlobalSyle';
 import MainContainer from '../containers/MainContainer';
 import ProductPageContainer from '../containers/ProductPageContainer';
-import GlobalStyle from './styles/GlobalSyle';
 import FloatingButton from './FloatingButton';
 import Header from './Header';
-import Login from './Login';
 import MyPage from './MyPage';
+import Login from './Login';
 
 const App = ({
   onLoad,
@@ -37,8 +37,8 @@ const App = ({
     <ThemeProvider theme={theme}>
       <Reset />
       <GlobalStyle />
-      <Header userName={user?.name} />
-      <FloatingButton user={user} />
+      <Header userName={user?.name}/>
+      <FloatingButton user={user}/>
       <Switch>
         <Route exact path='/'>
           <MainContainer />
@@ -47,7 +47,7 @@ const App = ({
           <ProductPageContainer />
         </Route>
         <Route path='/login'>
-          {user ? <Redirect to='/'/> : <Login onLogin={onLogin} />}
+          {user ? <Redirect to='/'/> : <Login onLogin={onLogin}/>}
         </Route>
         <Route path='/mypage/:id'>
           {

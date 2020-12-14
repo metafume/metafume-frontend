@@ -46,10 +46,10 @@ const SearchBar = ({ onSearch, onResetSearch }) => {
 
   const handleOnSubmit = ev => {
     ev.preventDefault();
-    if (value.length >= 2) {
-      onResetSearch();
-      onSearch(value);
-    }
+
+    if (value.length <= 2) return;
+    onResetSearch();
+    onSearch(value);
   };
 
   return (

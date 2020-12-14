@@ -8,7 +8,7 @@ import api from '../utils/api';
 
 import Header from './Header';
 import Loading from './Loading';
-import Error from './Error';
+import ErrorBox from './ErrorBox';
 import PerfumeAccordMap from './PerfumeAccordMap';
 
 import { FaRegHeart, FaHeart } from 'react-icons/fa';
@@ -144,7 +144,7 @@ const ProductPage = ({ onAdd, onDelete, user }) => {
     }
   };
 
-  if (error) return <Wrapper><Error message={error?.message} back/></Wrapper>;
+  if (error) return <Wrapper><ErrorBox message={error?.message} back/></Wrapper>;
   if (!product) return <Wrapper><Loading /></Wrapper>;
 
   return (

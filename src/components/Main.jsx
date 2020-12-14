@@ -10,7 +10,7 @@ import SearchBar from './SearchBar';
 import VerticalProductList from './VerticalProductList';
 import HorizontalProductList from './HorizontalProductList';
 import Loading from './Loading';
-import Error from './Error';
+import ErrorBox from './ErrorBox';
 
 const Container = styled.div`
   width: 100%;
@@ -83,7 +83,7 @@ const Main = ({ searchList, onSearch, onResetSearch, loading, error }) => {
       </SearchWrapper>
       <ResultWrapper>
         {loading && <Loading />}
-        {error && <Error message={error}/>}
+        {error && <ErrorBox message={error}/>}
         {
           searchList ?
           <SearchListWrapper>
@@ -107,8 +107,8 @@ const Main = ({ searchList, onSearch, onResetSearch, loading, error }) => {
 Main.propTypes = {
   onSearch: PropTypes.func.isRequired,
   onResetSearch: PropTypes.func.isRequired,
-  searchList: PropTypes.array,
   loading: PropTypes.bool.isRequired,
+  searchList: PropTypes.array,
   error: PropTypes.string,
 };
 

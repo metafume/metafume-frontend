@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 
-import App from '../components/App';
-
 import api from '../utils/api';
 import * as actions from '../reducers/user';
 import { deleteToken, getToken } from '../utils/helpers';
+
+import App from '../components/App';
 
 const mapStateToProps = state => ({
   user: state.user?.profile,

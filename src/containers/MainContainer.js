@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 
-import Main from '../components/Main';
+import * as actions from '../reducers/searchList';
 
-import { addSearchListStart, deleteSearchList } from '../reducers/searchList';
+import Main from '../components/Main';
 
 const mapStateToProps = state => ({
   searchList: state.searchList.list,
@@ -10,15 +10,13 @@ const mapStateToProps = state => ({
   error: state.searchList.error?.message,
 });
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onSearch: keyword => {
-      dispatch(addSearchListStart(keyword));
-    },
-    onResetSearch: () => {
-      dispatch(deleteSearchList());
-    },
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  onSearch: keyword => {
+    dispatch(actions.addSearchListStart(keyword));
+  },
+  onResetSearch: () => {
+    dispatch(actions.deleteSearchList());
+  },
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

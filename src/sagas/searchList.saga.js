@@ -1,6 +1,6 @@
 import { takeLatest, put, all, call } from 'redux-saga/effects';
-import * as actions from '../reducers/searchList';
 
+import * as actions from '../reducers/searchList';
 import api from '../utils/api';
 
 function* searchKeyword({ payload }) {

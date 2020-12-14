@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import Loading from './Loading';
 
-const Error = ({ message, back }) => {
+const ErrorBox = ({ message, back }) => {
   return (
     <Loading>
       <p style={{ color: 'salmon', marginBottom: '40px' }}>{message || 'No message'}</p>
@@ -13,9 +13,9 @@ const Error = ({ message, back }) => {
   );
 };
 
-Error.propTypes = {
+ErrorBox.propTypes = {
   message: PropTypes.string.isRequired,
   back: PropTypes.bool,
 };
 
-export default Error;
+export default ErrorBox;

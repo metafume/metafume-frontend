@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import useSWR from 'swr';
-import { getToken } from '../utils/helpers';
+
 import api from '../utils/api';
+import { getToken } from '../utils/helpers';
 
 import Button from './Button';
 import HorizontalProductList from './HorizontalProductList';
@@ -63,7 +64,7 @@ const fetchRecommendList = async userId => {
 
 const MyPage = ({ onLogout, onSubscribe, user }) => {
   const { _id: userId, name, email, photoUrl, isSubscribed, myFavorite } = user;
-  const { data } = useSWR(userId, fetchRecommendList, {
+  const { data: recommendList } = useSWR(userId, fetchRecommendList, {
     shouldRetryOnError: false,
   });
 
@@ -75,7 +76,7 @@ const MyPage = ({ onLogout, onSubscribe, user }) => {
   return (
     <Wrapper>
       <ProfileWrapper>
-        <img className='thumnail' src={photoUrl} />
+        <img className='thumnail' src={photoUrl}/>
         <h1>{name}</h1>
         <p>{email}</p>
         <Button onClick={onLogout} background='salmon'>Logout</Button>
@@ -90,10 +91,10 @@ const MyPage = ({ onLogout, onSubscribe, user }) => {
         <h3>My favorites</h3>
         <HorizontalProductList list={myFavorite}/>
       </ListWrapper>
-      {data &&
+      {recommendList &&
         <ListWrapper>
           <h3>Recommend for you</h3>
-          <HorizontalProductList list={data} />
+          <HorizontalProductList list={recommendList}/>
         </ListWrapper>
       }
     </Wrapper>
