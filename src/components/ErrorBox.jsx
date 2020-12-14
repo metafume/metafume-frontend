@@ -1,13 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 import Loading from './Loading';
+
+const StyledParameter = styled.p`
+  margin-bottom: 40px;
+  color: ${({ theme }) => theme.salmon};
+`;
 
 const ErrorBox = ({ message, back }) => {
   return (
     <Loading>
-      <p style={{ color: 'salmon', marginBottom: '40px' }}>{message || 'No message'}</p>
+      <StyledParameter>{message || 'No message'}</StyledParameter>
       {back && <Link to='/' style={{ color: 'black' }}>Back</Link>}
     </Loading>
   );

@@ -30,7 +30,7 @@ const TextWrapper = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: #4d453e;
+  color: ${({ theme }) => theme.spaceShuttle};
 
   h1 {
     font-size: 32px;
@@ -54,14 +54,14 @@ const AccordsWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  background-color: #fff3e6;
+  background-color: ${({ theme }) => theme.oldLace};
 
   h3 {
     width: 100%;
     padding-top: 24px;
     font-size: 24px;
     text-align: center;
-    color: #4d453e;
+    color: ${({ theme }) => theme.spaceShuttle};
   }
 
   div {
@@ -82,7 +82,7 @@ const NotesWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  background-color: #141414;
+  background-color: ${({ theme }) => theme.bunker};
 
   h3 {
     width: 100%;
@@ -90,7 +90,7 @@ const NotesWrapper = styled.div`
     margin-bottom: 24px;
     font-size: 24px;
     text-align: center;
-    color: #82776c;
+    color: ${({ theme }) => theme.americano};
   }
 
   div {
@@ -101,9 +101,9 @@ const NotesWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    border: #82776c 2px dotted;
+    border: ${({ theme }) => theme.americano} 2px dotted;
     font-size: 24px;
-    color: #82776c;
+    color: ${({ theme }) => theme.americano};
     text-align: center;
   }
 `;

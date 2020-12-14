@@ -17,7 +17,7 @@ const Wrapper = styled.div`
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    background-color: #FFF6F0;
+    background-color: ${({ theme }) => theme.provincialPink};
     margin-bottom: 24px;
   }
 
@@ -29,7 +29,7 @@ const Wrapper = styled.div`
   h6 {
     font-size: 16px;
     margin: 14px 14px;
-    color: #c2c2c2;
+    color: ${({ theme }) => theme.lightGray};
   }
 `;
 

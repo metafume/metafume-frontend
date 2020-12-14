@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import * as d3 from 'd3';
 
+import theme from './styles/theme';
+
 const Wrapper = styled.div`
   position: relative;
 `;
@@ -59,7 +61,7 @@ const AccordMap = ({ accords, imageUrl, name }) => {
       .attr('width', '100vw')
       .attr('height', '90vh')
       .attr('viewBox', [0, 0, 300, 300])
-      .style('background-color', '#FFF6F0');
+      .style('background-color', theme.provincialPink);
 
     for (let i = 0; i < 30; i++) {
       accords.forEach(accord => {

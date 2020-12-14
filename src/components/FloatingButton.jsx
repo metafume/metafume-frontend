@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
+import theme from './styles/theme';
+
 import Button from './Button';
 
 const Wrapper = styled.div`
@@ -29,8 +31,8 @@ const FloatingButton = ({ user }) => {
     <Wrapper>
       <Button
         onClick={handleOnClickMyPage}
-        background='#00b894'
-        color='#f5f6fa'
+        background={theme.persianGreen}
+        color={theme.whisper}
       >
       My page
       </Button>
