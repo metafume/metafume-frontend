@@ -40,6 +40,10 @@ const ProfileWrapper = styled.div`
   p {
     margin-bottom: 42px;
   }
+
+  button {
+    margin-bottom: 16px;
+  }
 `;
 
 const ListWrapper = styled.div`
@@ -57,11 +61,16 @@ const fetchRecommendList = async userId => {
   return api.getRecommendList(userId, token);
 };
 
-const MyPage = ({ onLogout, user }) => {
-  const { _id: userId, name, email, photoUrl } = user;
+const MyPage = ({ onLogout, onSubscribe, user }) => {
+  const { _id: userId, name, email, photoUrl, isSubscribed, myFavorite } = user;
   const { data } = useSWR(userId, fetchRecommendList, {
     shouldRetryOnError: false,
   });
+
+  const handleOnSubscribe = () => {
+    if (isSubscribed) onSubscribe(userId, false);
+    else onSubscribe(userId, true);
+  };
 
   return (
     <Wrapper>
@@ -69,11 +78,17 @@ const MyPage = ({ onLogout, user }) => {
         <img className='thumnail' src={photoUrl} />
         <h1>{name}</h1>
         <p>{email}</p>
-        <Button onClick={onLogout}>Logout</Button>
+        <Button onClick={onLogout} background='salmon'>Logout</Button>
+        <Button
+          onClick={handleOnSubscribe}
+          background={isSubscribed ? 'gray' : 'black'}
+        >
+          {isSubscribed ? 'Unsubscribe' : 'Subscribe'}
+        </Button>
       </ProfileWrapper>
       <ListWrapper>
         <h3>My favorites</h3>
-        <HorizontalProductList list={user.myFavorite}/>
+        <HorizontalProductList list={myFavorite}/>
       </ListWrapper>
       {data &&
         <ListWrapper>
@@ -87,6 +102,7 @@ const MyPage = ({ onLogout, user }) => {
 
 MyPage.propTypes = {
   onLogout: PropTypes.func.isRequired,
+  onSubscribe: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
 };
 

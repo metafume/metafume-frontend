@@ -5,6 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import { Reset } from 'styled-reset';
 
 import theme from './styles/theme';
+import { getToken, deleteToken } from '../utils/helpers';
 
 import MainContainer from '../containers/MainContainer';
 import ProductPageContainer from '../containers/ProductPageContainer';
@@ -14,10 +15,23 @@ import Header from './Header';
 import Login from './Login';
 import MyPage from './MyPage';
 
-const App = ({ onLoad, onLogin, onLogout, user }) => {
+const App = ({
+  onLoad,
+  onLogin,
+  onLogout,
+  onSubscribe,
+  user,
+  error,
+}) => {
   useEffect(() => {
     onLoad();
   }, []);
+
+  useEffect(() => {
+    if (!error) return;
+    const token = getToken();
+    if (token) deleteToken();
+  }, [error]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -36,7 +50,16 @@ const App = ({ onLoad, onLogin, onLogout, user }) => {
           {user ? <Redirect to='/'/> : <Login onLogin={onLogin} />}
         </Route>
         <Route path='/mypage/:id'>
-          {user ? <MyPage user={user} onLogout={onLogout}/> : <Redirect to='/login'/>}
+          {
+            user ?
+            <MyPage
+              user={user}
+              onLogout={onLogout}
+              onSubscribe={onSubscribe}
+            />
+            :
+            <Redirect to='/login'/>
+          }
         </Route>
         <Redirect to='/'/>
       </Switch>
@@ -48,6 +71,8 @@ App.propTypes = {
   onLoad: PropTypes.func.isRequired,
   onLogin: PropTypes.func.isRequired,
   onLogout: PropTypes.func.isRequired,
+  onSubscribe: PropTypes.func.isRequired,
+  error: PropTypes.object,
   user: PropTypes.object,
 };
 
