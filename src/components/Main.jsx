@@ -93,7 +93,7 @@ const Main = ({ searchList, onSearch, onResetSearch, loading, error }) => {
           <RecentViewWrapper>
             {!loading && recentViewList &&
               <>
-                <h3>Recent views</h3>
+                <h3>Latest views</h3>
                 <HorizontalProductList list={recentViewList}/>
               </>
             }
