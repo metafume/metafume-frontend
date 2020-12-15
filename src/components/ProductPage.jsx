@@ -8,7 +8,7 @@ import api from '../utils/api';
 
 import Header from './Header';
 import Loading from './Loading';
-import Error from './Error';
+import ErrorBox from './ErrorBox';
 import PerfumeAccordMap from './PerfumeAccordMap';
 
 import { FaRegHeart, FaHeart } from 'react-icons/fa';
@@ -30,7 +30,7 @@ const TextWrapper = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: #4d453e;
+  color: ${({ theme }) => theme.spaceShuttle};
 
   h1 {
     font-size: 32px;
@@ -54,24 +54,14 @@ const AccordsWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  background-color: #fff3e6;
+  background-color: ${({ theme }) => theme.oldLace};
 
   h3 {
     width: 100%;
     padding-top: 24px;
     font-size: 24px;
     text-align: center;
-    color: #4d453e;
-  }
-
-  div {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    margin: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    color: ${({ theme }) => theme.spaceShuttle};
   }
 `;
 
@@ -82,7 +72,7 @@ const NotesWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  background-color: #141414;
+  background-color: ${({ theme }) => theme.bunker};
 
   h3 {
     width: 100%;
@@ -90,28 +80,45 @@ const NotesWrapper = styled.div`
     margin-bottom: 24px;
     font-size: 24px;
     text-align: center;
-    color: #82776c;
-  }
-
-  div {
-    width: 260px;
-    height: 260px;
-    margin: 24px;
-    border-radius: 36px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: #82776c 2px dotted;
-    font-size: 24px;
-    color: #82776c;
-    text-align: center;
+    color: ${({ theme }) => theme.americano};
   }
 `;
 
-const heartIconStyleOptions = {
-  marginBottom: '24px',
-  cursor: 'pointer',
-};
+const AccordBox = styled.div`
+  width: ${({ size }) => `${200 * parseInt(size) / 100}px`};
+  height: ${({ size }) => `${200 * parseInt(size) / 100}px`};
+  background-color: ${({ background }) => background};
+  color: ${({ color }) => color};
+  border-radius: 50%;
+  margin: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const NoteBox = styled.div`
+  width: 260px;
+  height: 120px;
+  margin: 24px;
+  border-radius: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: ${({ theme }) => theme.americano} 2px dotted;
+  font-size: 24px;
+  color: ${({ theme }) => theme.americano};
+  text-align: center;
+`;
+
+const StyledFaRegHeart = styled(FaRegHeart)`
+  margin-bottom: 24px;
+  cursor: pointer;
+`;
+
+const StyledFaHeart = styled(FaHeart)`
+  margin-bottom: 24px;
+  cursor: pointer;
+`;
 
 const fetchProductDetail = async path => {
   await new Promise(res => setTimeout(res, 1000));
@@ -144,7 +151,7 @@ const ProductPage = ({ onAdd, onDelete, user }) => {
     }
   };
 
-  if (error) return <Wrapper><Error message={error?.message} back/></Wrapper>;
+  if (error) return <Wrapper><ErrorBox message={error?.message} back/></Wrapper>;
   if (!product) return <Wrapper><Loading /></Wrapper>;
 
   return (
@@ -161,14 +168,12 @@ const ProductPage = ({ onAdd, onDelete, user }) => {
       >
         {
           user && (isFavorite ?
-          <FaHeart
-            style={heartIconStyleOptions}
+          <StyledFaHeart
             size={28}
             onClick={handleOnFavorite}
           />
           :
-          <FaRegHeart
-            style={heartIconStyleOptions}
+          <StyledFaRegHeart
             size={28}
             onClick={handleOnFavorite}
           />)
@@ -181,16 +186,14 @@ const ProductPage = ({ onAdd, onDelete, user }) => {
         <h3>Accords</h3>
         {product.accords.map((accord, idx) => {
           return (
-              <div
-                key={idx}
-                style={{
-                  color: accord.styles.color,
-                  backgroundColor: accord.styles.background,
-                  width: `${200 * parseInt(accord.styles.width) / 100}px`,
-                  height: `${200 * parseInt(accord.styles.width) / 100}px`,
-                }}>
-                {accord.name}
-              </div>
+            <AccordBox
+              key={idx}
+              color={accord.styles.color}
+              background={accord.styles.background}
+              size={accord.styles.width}
+            >
+              {accord.name}
+            </AccordBox>
           );
         })}
       </AccordsWrapper>
@@ -198,20 +201,9 @@ const ProductPage = ({ onAdd, onDelete, user }) => {
         <h3>Notes</h3>
         {product.notes.map((note, idx) => {
           if (typeof note === 'string') {
-              return <div key={idx}>{note}</div>;
+            return <NoteBox key={idx}>{note}</NoteBox>;
           } else {
-            return (
-              <img
-                key={idx}
-                  style={{
-                    borderRadius: '36px',
-                    width: '260px',
-                    margin: '24px',
-                  }}
-                src={`${process.env.REACT_APP_STORAGE_URL}${note.path}`}
-                alt={note.name}
-              />
-            );
+            return <NoteBox key={idx}>{note.name}</NoteBox>;
           }
         })}
       </NotesWrapper>

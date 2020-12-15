@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 
-import App from '../components/App';
-
 import api from '../utils/api';
 import * as actions from '../reducers/user';
-import { deleteToken, getToken } from '../utils/helpers';
+import { deleteToken } from '../utils/helpers';
+
+import App from '../components/App';
 
 const mapStateToProps = state => ({
   user: state.user?.profile,
@@ -12,8 +12,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onLoad: () => {
-    const token = getToken();
+  onLoad: token => {
     if (token) dispatch(actions.loginStart(token));
   },
   onLogin: () => {
@@ -24,8 +23,7 @@ const mapDispatchToProps = dispatch => ({
     deleteToken();
   },
   onSubscribe: async (userId, option) => {
-    const token = getToken();
-    await api.subscribeMail(userId, token, option);
+    await api.subscribeMail(userId, option);
     dispatch(actions.updateSubscription(option));
   },
 });
