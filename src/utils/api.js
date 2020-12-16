@@ -58,13 +58,13 @@ const deleteFavorite = async (userId, productId) => {
 };
 
 const getRecommendList = async userId => {
-  const result = await axios.get(`/users/${userId}/favorite/recommend`, {
+  const result = await axios.get(`/products/recommendation/${userId}`, {
     headers: { 'x-access-token': getToken() } });
   return result.data;
 };
 
 const subscribeMail = async (userId, option) => {
-  const result = await axios.put(`/users/${userId}/subscribe`, { option }, {
+  const result = await axios.put(`/users/${userId}/subscription`, { option }, {
     headers: { 'x-access-token': getToken() } });
   return result.data;
 };

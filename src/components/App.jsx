@@ -37,7 +37,7 @@ const App = ({
       <Reset />
       <GlobalStyle />
       <Header userName={user?.name}/>
-      <FloatingButton user={user}/>
+      <FloatingButton userId={user?._id}/>
       <Switch>
         <Route exact path='/'>
           <MainContainer />
@@ -72,7 +72,19 @@ App.propTypes = {
   onLogout: PropTypes.func.isRequired,
   onSubscribe: PropTypes.func.isRequired,
   error: PropTypes.object,
-  user: PropTypes.object,
+  user: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    photoUrl: PropTypes.string.isRequired,
+    isSubscribed: PropTypes.bool.isRequired,
+    myFavorite: PropTypes.arrayOf(PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      productId: PropTypes.string.isRequired,
+      brand: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    })).isRequired,
+  }),
 };
 
 export default App;

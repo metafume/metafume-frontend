@@ -98,7 +98,19 @@ const MyPage = ({ onLogout, onSubscribe, user }) => {
 MyPage.propTypes = {
   onLogout: PropTypes.func.isRequired,
   onSubscribe: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired,
+  user: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    photoUrl: PropTypes.string.isRequired,
+    isSubscribed: PropTypes.bool.isRequired,
+    myFavorite: PropTypes.arrayOf(PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      productId: PropTypes.string.isRequired,
+      brand: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    })).isRequired,
+  }).isRequired,
 };
 
 export default MyPage;

@@ -214,7 +214,19 @@ const ProductPage = ({ onAdd, onDelete, user }) => {
 ProductPage.propTypes = {
   onAdd: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
-  user: PropTypes.object,
+  user: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    photoUrl: PropTypes.string.isRequired,
+    isSubscribed: PropTypes.bool.isRequired,
+    myFavorite: PropTypes.arrayOf(PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      productId: PropTypes.string.isRequired,
+      brand: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    })).isRequired,
+  }),
 };
 
 export default ProductPage;
