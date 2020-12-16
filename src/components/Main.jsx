@@ -108,7 +108,12 @@ Main.propTypes = {
   onSearch: PropTypes.func.isRequired,
   onResetSearch: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  searchList: PropTypes.array,
+  searchList: PropTypes.arrayOf(PropTypes.shape({
+    brand: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    productId: PropTypes.string.isRequired,
+  }).isRequired),
   error: PropTypes.string,
 };
 

@@ -19,11 +19,11 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
-const FloatingButton = ({ user }) => {
+const FloatingButton = ({ userId }) => {
   const history = useHistory();
 
   const handleOnClickMyPage = () => {
-    if (user) history.push(`/mypage/${user._id}`);
+    if (userId) history.push(`/mypage/${userId}`);
     else history.push('/login');
   };
 
@@ -41,7 +41,7 @@ const FloatingButton = ({ user }) => {
 };
 
 FloatingButton.propTypes = {
-  user: PropTypes.object,
+  userId: PropTypes.string,
 };
 
 export default FloatingButton;

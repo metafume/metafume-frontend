@@ -22,7 +22,12 @@ const VerticalProductList = ({ list }) => {
 };
 
 VerticalProductList.propTypes = {
-  list: PropTypes.array,
+  list: PropTypes.arrayOf(PropTypes.shape({
+    brand: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    productId: PropTypes.string.isRequired,
+  }).isRequired).isRequired,
 };
 
 export default VerticalProductList;
