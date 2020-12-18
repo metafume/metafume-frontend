@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import { slideDown } from './styles/keyframes';
+
 import Logo from './Logo';
 
 const Wrapper = styled.header`
@@ -11,6 +13,7 @@ const Wrapper = styled.header`
   height: 80px;
   display: flex;
   align-items: center;
+  animation: 2s ${slideDown};
 
   a:nth-child(2) {
     position: absolute;

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import useSWR from 'swr';
 
 import api from '../utils/api';
+import { slideUp } from './styles/keyframes';
 
 import Button from './Button';
 import HorizontalProductList from './HorizontalProductList';
@@ -20,7 +21,7 @@ const Wrapper = styled.div`
 const ProfileWrapper = styled.div`
   width: 100%;
   margin-top: 160px;
-  padding: 40px 0;
+  padding: 30px 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,25 +31,30 @@ const ProfileWrapper = styled.div`
     width: 100px;
     border-radius: 50%;
     margin-bottom: 24px;
+    animation: 1.2s ${slideUp};
   }
 
   h1 {
     font-size: 42px;
     margin-bottom: 24px;
+    animation: 1.6s ${slideUp};
   }
 
   p {
     margin-bottom: 42px;
+    animation: 2s ${slideUp};
   }
 
   button {
     margin-bottom: 16px;
+    animation: 2.4s ${slideUp};
   }
 `;
 
 const ListWrapper = styled.div`
   width: 100%;
   margin: 24px 0;
+  animation: 2.4s ${slideUp};
 
   h3 {
     font-size: 21px;

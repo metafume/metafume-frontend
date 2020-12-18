@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { fadeIn } from './styles/keyframes';
+
 import ConditionalWrapper from './ConditionalWrapper';
 
 const Wrapper = styled.div`
   width: 400px;
   margin: 20px;
   padding: 10px;
+  animation: 1s ${fadeIn} ease-in-out;
 
   div {
     width: 260px;
@@ -19,6 +22,11 @@ const Wrapper = styled.div`
     overflow: hidden;
     background-color: ${({ theme }) => theme.provincialPink};
     margin-bottom: 24px;
+    transition: transform 0.5s;
+
+    &:hover {
+      transform: scale(1.04) translateY(-10px);
+    }
   }
 
   img {
@@ -64,7 +72,7 @@ const Product = ({ product, mode }) => {
     <ConditionalWrapper Wrapper={mode === 'search' ? SearchWrapper : Wrapper}>
       <StyledLink to={`/product/${brand}/${productId}`} mode={mode}>
         <div>
-          <img src={imageUrl}/>
+          <img draggable={false} src={imageUrl}/>
          </div>
          <h6>{brand}</h6>
          <h2>{name}</h2>

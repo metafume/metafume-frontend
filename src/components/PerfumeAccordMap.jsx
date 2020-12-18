@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import * as d3 from 'd3';
 
 import theme from './styles/theme';
+import { fadeIn } from './styles/keyframes';
 
 const Wrapper = styled.div`
   position: relative;
@@ -16,6 +17,7 @@ const ProductImage = styled.img`
   left: 50%;
   transform: translate(-50%);
   mix-blend-mode: multiply;
+  animation: 2s ${fadeIn};
 `;
 
 const dragEventListener = d3.drag()
@@ -29,34 +31,39 @@ const dragEventListener = d3.drag()
     d3.select(this).raise().attr('stroke', null);
   });
 
-const animateCircle = circle => {
-  const updateCircle = circle
-    .transition()
-    .ease(d3.easeCubic)
-    .duration(40000)
-    .attr('opacity', d3.randomUniform(0.5, 1))
-    .attr('cx', d3.randomUniform(-200, 500))
-    .attr('cy', d3.randomUniform(20, 260))
-    .on('end', () => updateCircle.call(animateCircle));
-};
-
-const handleMouseOver = function () {
-  const self = d3.select(this);
-
-  self
-    .transition()
-    .ease(d3.easeQuadOut)
-    .duration(1200)
-    .style('opacity', d3.randomUniform(0.5, 1))
-    .style('transform', `translate(${d3.randomUniform(-40, 40)()}px, ${d3.randomUniform(-40, 40)()}px)`)
-    .on('end', () => self.call(animateCircle));
-};
-
 const AccordMap = ({ accords, imageUrl, name }) => {
   const svgRef = useRef();
 
+  const animateCircle = circle => {
+    if (!svgRef.current) return;
+
+    const updateCircle = circle
+      .transition()
+      .ease(d3.easeCubic)
+      .duration(40000)
+      .attr('opacity', d3.randomUniform(0.5, 1))
+      .attr('cx', d3.randomUniform(-200, 500))
+      .attr('cy', d3.randomUniform(20, 260))
+      .on('end', () => updateCircle.call(animateCircle));
+  };
+
+  const handleMouseOver = function () {
+    if (!svgRef.current) return;
+
+    const self = d3.select(this);
+
+    self
+      .transition()
+      .ease(d3.easeQuadOut)
+      .duration(1200)
+      .style('opacity', d3.randomUniform(0.5, 1))
+      .style('transform', `translate(${d3.randomUniform(-40, 40)()}px, ${d3.randomUniform(-40, 40)()}px)`)
+      .on('end', () => self.call(animateCircle));
+  };
+
   useEffect(() => {
     const svg = d3.select(svgRef.current);
+
     svg
       .attr('width', '100vw')
       .attr('height', '90vh')
@@ -83,11 +90,13 @@ const AccordMap = ({ accords, imageUrl, name }) => {
           .on('end', () => circle.call(animateCircle));
       });
     }
+
+    return () => d3.select(svgRef.current).remove();
   }, []);
 
   return (
     <Wrapper>
-      <ProductImage src={imageUrl} alt={name}/>
+      <ProductImage draggable={false} src={imageUrl} alt={name}/>
       <svg ref={svgRef}/>
     </Wrapper>
   );

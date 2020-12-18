@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import useSWR from 'swr';
 
 import api from '../utils/api';
+import { slideUp } from './styles/keyframes';
 
 import Logo from './Logo';
 import SearchBar from './SearchBar';
@@ -29,22 +30,28 @@ const LogoWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  animation: 1.2s ${slideUp};
 `;
 
 const SearchWrapper = styled.div`
   width: 500px;
-  height: 100px;
   height: 10vh;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 42px;
+  animation: 1.6s ${slideUp};
 `;
 
 const ResultWrapper = styled.div`
-  height: 600px;
+  width: 100vw;
   height: 70vh;
+  padding-top: 20px;
   overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 `;
 
 const RecentViewWrapper = styled.div`
@@ -52,12 +59,14 @@ const RecentViewWrapper = styled.div`
   left: 0;
   bottom: 0;
   width: 100vw;
+  animation: 2s ${slideUp};
 
   h3 {
     font-size: 21px;
     margin-left: 36px;
     margin-bottom: 24px;
     width: 400px;
+    animation: 2s ${slideUp};
   }
 `;
 

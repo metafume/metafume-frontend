@@ -7,6 +7,8 @@ const theme = {
   americano: '#82776D',
   spaceShuttle: '#4d453e',
   bunker: '#141414',
+  rangoonGreen: '#1a1818',
+  hunterGreen: '#171515',
   whisper: '#f5f6fa',
 };
 

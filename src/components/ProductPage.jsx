@@ -5,8 +5,8 @@ import styled from 'styled-components';
 import useSWR from 'swr';
 
 import api from '../utils/api';
+import { fadeIn } from './styles/keyframes';
 
-import Header from './Header';
 import Loading from './Loading';
 import ErrorBox from './ErrorBox';
 import PerfumeAccordMap from './PerfumeAccordMap';
@@ -31,6 +31,7 @@ const TextWrapper = styled.div`
   align-items: center;
   text-align: center;
   color: ${({ theme }) => theme.spaceShuttle};
+  animation: 1s ${fadeIn} ease-in-out;
 
   h1 {
     font-size: 32px;
@@ -54,14 +55,15 @@ const AccordsWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  background-color: ${({ theme }) => theme.oldLace};
+  background-color: ${({ theme }) => theme.rangoonGreen};
+  animation: 1s ${fadeIn} ease-in-out;
 
   h3 {
     width: 100%;
     padding-top: 24px;
     font-size: 24px;
     text-align: center;
-    color: ${({ theme }) => theme.spaceShuttle};
+    color: ${({ theme }) => theme.americano};
   }
 `;
 
@@ -72,7 +74,8 @@ const NotesWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  background-color: ${({ theme }) => theme.bunker};
+  background-color: ${({ theme }) => theme.hunterGreen};
+  animation: 1s ${fadeIn} ease-in-out;
 
   h3 {
     width: 100%;
@@ -87,37 +90,59 @@ const NotesWrapper = styled.div`
 const AccordBox = styled.div`
   width: ${({ size }) => `${200 * parseInt(size) / 100}px`};
   height: ${({ size }) => `${200 * parseInt(size) / 100}px`};
-  background-color: ${({ background }) => background};
-  color: ${({ color }) => color};
+  border: 1px ${({ background }) => background} solid;
+  color: ${({ background }) => background};
+  background-color: transparent;
   border-radius: 50%;
   margin: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  transition: transform 0.4s, background-color 0.4s, color 0.4s;
+
+  &:hover {
+    background-color: ${({ background }) => background};
+    color: ${({ color }) => color};
+    transform: scale(1.1);
+  }
 `;
 
 const NoteBox = styled.div`
   width: 260px;
-  height: 120px;
+  height: 90px;
   margin: 24px;
-  border-radius: 24px;
+  border-radius: 18px;
   display: flex;
   justify-content: center;
   align-items: center;
   border: ${({ theme }) => theme.americano} 2px dotted;
-  font-size: 24px;
   color: ${({ theme }) => theme.americano};
+  font-size: 18px;
   text-align: center;
+  transition: border 0.6s, color 0.6s;
+
+  &:hover {
+    border: ${({ theme }) => theme.provincialPink} 2px solid;
+    color: ${({ theme }) => theme.provincialPink};
+  }
 `;
 
 const StyledFaRegHeart = styled(FaRegHeart)`
-  margin-bottom: 24px;
+  margin-bottom: 32px;
   cursor: pointer;
+  transition: color 0.4s, transform 0.4s ease-out;
+  transform: scale(1.1);
+
+  &:hover {
+    transform: scale(1.3);
+  }
 `;
 
 const StyledFaHeart = styled(FaHeart)`
-  margin-bottom: 24px;
+  margin-bottom: 32px;
   cursor: pointer;
+  transform: scale(1.3);
 `;
 
 const fetchProductDetail = async path => {
@@ -156,7 +181,6 @@ const ProductPage = ({ onAdd, onDelete, user }) => {
 
   return (
     <>
-      <Header />
       <PerfumeAccordMap
         name={product.name}
         imageUrl={product.imageUrl}
