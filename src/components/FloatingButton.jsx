@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
 import theme from './styles/theme';
@@ -10,38 +9,38 @@ import Button from './Button';
 const Wrapper = styled.div`
   z-index: 999;
   position: fixed;
-  bottom: -14px;
-  right: 20px;
+  bottom: 0px;
+  right: 0px;
   width: 140px;
   height: 140px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end;
+  align-items: flex-end;
+
+  button {
+    border-top-left-radius: 24px;
+  };
 `;
 
-const FloatingButton = ({ userId }) => {
-  const history = useHistory();
-
-  const handleOnClickMyPage = () => {
-    if (userId) history.push(`/mypage/${userId}`);
-    else history.push('/login');
-  };
-
+const FloatingButton = ({ onClick, children, background, color }) => {
   return (
     <Wrapper>
       <Button
-        onClick={handleOnClickMyPage}
-        background={theme.persianGreen}
-        color={theme.whisper}
+        onClick={onClick}
+        background={background || theme.persianGreen}
+        color={color || theme.whisper}
       >
-      My page
+      {children}
       </Button>
     </Wrapper>
   );
 };
 
 FloatingButton.propTypes = {
-  userId: PropTypes.string,
+  onClick: PropTypes.func.isRequired,
+  children: PropTypes.node,
+  background: PropTypes.string,
+  color: PropTypes.string,
 };
 
 export default FloatingButton;
