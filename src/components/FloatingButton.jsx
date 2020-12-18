@@ -9,13 +9,17 @@ import Button from './Button';
 const Wrapper = styled.div`
   z-index: 999;
   position: fixed;
-  bottom: -14px;
-  right: 20px;
+  bottom: 0px;
+  right: 0px;
   width: 140px;
   height: 140px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end;
+  align-items: flex-end;
+
+  button {
+    border-top-left-radius: 24px;
+  };
 `;
 
 const FloatingButton = ({ onClick, children, background, color }) => {
