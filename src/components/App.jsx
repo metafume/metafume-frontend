@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect, useHistory } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { Reset } from 'styled-reset';
 
@@ -23,6 +23,8 @@ const App = ({
   user,
   error,
 }) => {
+  const history = useHistory();
+
   useEffect(() => {
     onLoad(getToken());
   }, []);
@@ -32,12 +34,19 @@ const App = ({
     if (getToken()) deleteToken();
   }, [error]);
 
+  const handleOnClickMyPage = () => {
+    if (user) history.push(`/mypage/${user._id}`);
+    else history.push('/login');
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Reset />
       <GlobalStyle />
       <Header userName={user?.name}/>
-      <FloatingButton userId={user?._id}/>
+      <FloatingButton onClick={handleOnClickMyPage}>
+        My Page
+      </FloatingButton>
       <Switch>
         <Route exact path='/'>
           <MainContainer />
