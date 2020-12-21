@@ -27,7 +27,7 @@ const ProfileWrapper = styled.div`
   justify-content: center;
   align-items: center;
 
-  .thumnail {
+  .thumbnail {
     width: 100px;
     border-radius: 50%;
     margin-bottom: 24px;
@@ -76,7 +76,7 @@ const MyPage = ({ onLogout, onSubscribe, user }) => {
   return (
     <Wrapper>
       <ProfileWrapper>
-        <img className='thumnail' src={photoUrl}/>
+        <img className='thumbnail' src={photoUrl} alt='thumbnail'/>
         <h1>{name}</h1>
         <p>{email}</p>
         <Button onClick={onLogout} background='salmon'>Logout</Button>
