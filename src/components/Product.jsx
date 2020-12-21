@@ -72,7 +72,7 @@ const Product = ({ product, mode }) => {
     <ConditionalWrapper Wrapper={mode === 'search' ? SearchWrapper : Wrapper}>
       <StyledLink to={`/product/${brand}/${productId}`} mode={mode}>
         <div>
-          <img draggable={false} src={imageUrl}/>
+          <img draggable={false} src={imageUrl} alt={name}/>
          </div>
          <h6>{brand}</h6>
          <h2>{name}</h2>
