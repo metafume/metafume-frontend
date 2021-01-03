@@ -58,7 +58,7 @@ const deleteFavorite = async (userId, productId) => {
 };
 
 const getRecommendList = async userId => {
-  const result = await axios.get(`/products/recommendation/${userId}`, {
+  const result = await axios.get(`/users/${userId}/recommendation`, {
     headers: { 'x-access-token': getToken() } });
   return result.data;
 };
