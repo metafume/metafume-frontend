@@ -10,13 +10,17 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-y: auto;
 `;
 
 const VerticalProductList = ({ list }) => {
   return (
     <Wrapper>
-      <ProductList list={list} mode='search'/>
+      {
+        list.length > 0 ?
+        <ProductList list={list} mode='search'/>
+        :
+        <p>No Result</p>
+      }
     </Wrapper>
   );
 };

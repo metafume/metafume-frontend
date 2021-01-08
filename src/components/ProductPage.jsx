@@ -43,7 +43,7 @@ const TextWrapper = styled.div`
   }
 
   p {
-    width: 800px;
+    width: 80%;
     line-height: 21px;
   }
 `;

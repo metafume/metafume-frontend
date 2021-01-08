@@ -10,7 +10,7 @@ const StyledButton = styled.button`
   padding: 16px 26px;
   border: 2px transparent solid;
   background-color: ${({ background }) => background ? background : '#000'};
-  font-size: ${({ size }) => size ? `${size}px` : '18px'};
+  font-size: ${({ size }) => size ? `${size}px` : '16px'};
   color: ${({ color }) => color ? color : '#fff'};
   transition: border 0.4s, color 0.4s, background-color 0.4s;
   animation: 1s ${fadeIn};
