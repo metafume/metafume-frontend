@@ -65,7 +65,7 @@ const AccordMap = ({ accords, imageUrl, name }) => {
     const svg = d3.select(svgRef.current);
 
     svg
-      .attr('width', '100vw')
+      .attr('width', '100%')
       .attr('height', '90vh')
       .attr('viewBox', [0, 0, 300, 300])
       .style('background-color', theme.provincialPink);
