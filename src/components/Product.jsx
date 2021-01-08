@@ -42,10 +42,10 @@ const Wrapper = styled.div`
 `;
 
 const SearchWrapper = styled(Wrapper)`
-  width: 800px;
+  width: 70%;
   display: flex;
   align-items: center;
-  padding-bottom: 60px;
+  padding-bottom: 40px;
   border-bottom: 0.4px solid lightgray;
 
   div {

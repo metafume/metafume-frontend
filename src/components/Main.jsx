@@ -6,7 +6,6 @@ import useSWR from 'swr';
 import api from '../utils/api';
 import { slideUp } from './styles/keyframes';
 
-import Logo from './Logo';
 import SearchBar from './SearchBar';
 import VerticalProductList from './VerticalProductList';
 import HorizontalProductList from './HorizontalProductList';
@@ -15,26 +14,33 @@ import ErrorBox from './ErrorBox';
 
 const Container = styled.div`
   width: 100%;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow-x: hidden;
 `;
 
-const LogoWrapper = styled.div`
-  width: 500px;
-  height: 20vh;
+const TextWrapper = styled.div`
+  width: 36%;
+  min-width: 360px;
+  height: 26vh;
   margin-top: 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   animation: 1.2s ${slideUp};
+
+  h2 {
+    font-size: 42px;
+    line-height: 52px;
+    text-align: center;
+  }
 `;
 
 const SearchWrapper = styled.div`
-  width: 500px;
+  width: 100%;
   height: 10vh;
   display: flex;
   justify-content: center;
@@ -74,6 +80,7 @@ const RecentViewWrapper = styled.div`
 const SearchListWrapper = styled.div`
   position: relative;
   width: 100vw;
+  overflow-x: hidden;
 `;
 
 const Main = ({ searchList, onSearch, onResetSearch, loading, error }) => {
@@ -85,9 +92,9 @@ const Main = ({ searchList, onSearch, onResetSearch, loading, error }) => {
 
   return (
     <Container>
-      <LogoWrapper>
-        <Logo size={42}/>
-      </LogoWrapper>
+      <TextWrapper>
+        <h2>Visualizing your fragrances by color.</h2>
+      </TextWrapper>
       <SearchWrapper>
         <SearchBar onSearch={onSearch} onResetSearch={onResetSearch}/>
       </SearchWrapper>

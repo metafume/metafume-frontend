@@ -11,16 +11,17 @@ import HorizontalProductList from './HorizontalProductList';
 
 const Wrapper = styled.div`
   width: 100%;
-  margin-bottom: 160px;
+  margin-bottom: 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow-x: hidden;
 `;
 
 const ProfileWrapper = styled.div`
   width: 100%;
-  margin-top: 160px;
+  margin-top: 100px;
   padding: 30px 0;
   display: flex;
   flex-direction: column;
@@ -35,8 +36,8 @@ const ProfileWrapper = styled.div`
   }
 
   h1 {
-    font-size: 42px;
-    margin-bottom: 24px;
+    font-size: 28px;
+    margin-bottom: 16px;
     animation: 1.6s ${slideUp};
   }
 

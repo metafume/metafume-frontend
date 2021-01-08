@@ -6,6 +6,10 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 700;
     background-color: #FFF6F0;
   }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export default GlobalStyle;

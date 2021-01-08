@@ -13,15 +13,15 @@ const StyledForm = styled.form`
 
 const StyledInput = styled.input`
   all: unset;
-  width: 70%;
+  width: 50%;
   border-bottom: 0.4px solid lightgray;
   padding: 6px;
   margin-right: 24px;
-  font-size: 24px;
+  font-size: 21px;
   transition: 0.6s width ease-in-out;
 
   &:hover {
-    width: 80%;
+    width: 55%;
   }
 `;
 
