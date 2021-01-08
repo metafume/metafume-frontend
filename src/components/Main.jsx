@@ -58,7 +58,8 @@ const RecentViewWrapper = styled.div`
   position: relative;
   left: 0;
   bottom: 0;
-  width: 100vw;
+  width: 100%;
+  overflow: hidden;
   animation: 2s ${slideUp};
 
   h3 {
