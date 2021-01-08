@@ -7,7 +7,7 @@ import { Reset } from 'styled-reset';
 import theme from './styles/theme';
 import { getToken, deleteToken } from '../utils/helpers';
 
-import GlobalStyle from './styles/GlobalSyle';
+import GlobalStyle from './styles/GlobalStyle';
 import MainContainer from '../containers/MainContainer';
 import ProductPageContainer from '../containers/ProductPageContainer';
 import FloatingButton from './FloatingButton';
