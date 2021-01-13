@@ -1,4 +1,3 @@
-import React from 'react';
 import { cleanup, fireEvent } from '@testing-library/react';
 import { renderWithRouter } from '../setupTests';
 import SearchBar from './SearchBar';

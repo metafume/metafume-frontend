@@ -1,4 +1,3 @@
-import React from 'react';
 import { renderWithRouter } from '../setupTests';
 import ProductList from './ProductList';
 
