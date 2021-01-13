@@ -10,17 +10,9 @@ import { fadeIn } from './styles/keyframes';
 import Loading from './Loading';
 import ErrorBox from './ErrorBox';
 import PerfumeAccordMap from './PerfumeAccordMap';
+import CenterWrapper from './CenterWrapper';
 
 import { FaRegHeart, FaHeart } from 'react-icons/fa';
-
-const Wrapper = styled.div`
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
 
 const TextWrapper = styled.div`
   width: 100%;
@@ -176,8 +168,8 @@ const ProductPage = ({ onAdd, onDelete, user }) => {
     }
   };
 
-  if (error) return <Wrapper><ErrorBox message={error?.message} back/></Wrapper>;
-  if (!product) return <Wrapper><Loading /></Wrapper>;
+  if (error) return <CenterWrapper><ErrorBox message={error?.message} back/></CenterWrapper>;
+  if (!product) return <CenterWrapper><Loading /></CenterWrapper>;
 
   return (
     <>
