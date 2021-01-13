@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, Suspense, lazy } from 'react';
 import PropTypes from 'prop-types';
 import { Switch, Route, Redirect, useHistory } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
@@ -8,12 +8,14 @@ import theme from './styles/theme';
 import { getToken, deleteToken } from '../utils/helpers';
 
 import GlobalStyle from './styles/GlobalStyle';
-import MainContainer from '../containers/MainContainer';
-import ProductPageContainer from '../containers/ProductPageContainer';
 import FloatingButton from './FloatingButton';
 import Header from './Header';
-import MyPage from './MyPage';
-import Login from './Login';
+import Loading from './Loading';
+
+const MainContainer = lazy(() => import('../containers/MainContainer'));
+const ProductPageContainer = lazy(() => import('../containers/ProductPageContainer'));
+const MyPage = lazy(() => import('./MyPage'));
+const Login = lazy(() => import('./Login'));
 
 const App = ({
   onLoad,
@@ -47,6 +49,7 @@ const App = ({
       <FloatingButton onClick={handleOnClickMyPage}>
         My Page
       </FloatingButton>
+      <Suspense fallback={<Loading />}>
       <Switch>
         <Route exact path='/'>
           <MainContainer />
@@ -71,6 +74,7 @@ const App = ({
         </Route>
         <Redirect to='/'/>
       </Switch>
+      </Suspense>
     </ThemeProvider>
   );
 };
