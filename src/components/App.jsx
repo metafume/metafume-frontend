@@ -11,6 +11,7 @@ import GlobalStyle from './styles/GlobalStyle';
 import FloatingButton from './FloatingButton';
 import Header from './Header';
 import Loading from './Loading';
+import CenterWrapper from './CenterWrapper';
 
 const MainContainer = lazy(() => import('../containers/MainContainer'));
 const ProductPageContainer = lazy(() => import('../containers/ProductPageContainer'));
@@ -49,7 +50,7 @@ const App = ({
       <FloatingButton onClick={handleOnClickMyPage}>
         My Page
       </FloatingButton>
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={<CenterWrapper><Loading /></CenterWrapper>}>
       <Switch>
         <Route exact path='/'>
           <MainContainer />
