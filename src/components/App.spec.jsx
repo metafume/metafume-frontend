@@ -1,6 +1,5 @@
-import React from 'react';
 import { renderWithWrappers as render, withRedux, withRouter } from '../setupTests';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, waitFor } from '@testing-library/react';
 import App from './App';
 
 describe('<App />', () => {
@@ -12,19 +11,23 @@ describe('<App />', () => {
     onSubscribe: () => {},
   };
 
-  it('renders application without the user', () => {
+  it('renders application without the user', async () => {
     const { getByText } = render([withRedux, withRouter])(<App {...props}/>);
 
-    expect(getByText(MAIN_TEXT)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByText(MAIN_TEXT)).toBeInTheDocument();
+    });
 
     fireEvent.click(getByText('My Page'));
-    expect(getByText('Login')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByText('Login')).toBeInTheDocument();
+    });
 
     fireEvent.click(getByText('Metafume'));
     expect(getByText(MAIN_TEXT)).toBeInTheDocument();
   });
 
-  it('renders application with the user', () => {
+  it('renders application with the user', async () => {
     const USER = {
       _id: '123',
       name: 'Ethan',
@@ -40,7 +43,9 @@ describe('<App />', () => {
     expect(getByText(`Hi, ${USER.name}`)).toBeInTheDocument();
 
     fireEvent.click(getByText('My Page'));
-    expect(getByText(USER.name)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByText(USER.name)).toBeInTheDocument();
+    });
 
     fireEvent.click(getByText('Metafume'));
     expect(getByText(MAIN_TEXT)).toBeInTheDocument();
