@@ -9,7 +9,7 @@
 ## ✨ Summary
 - Metafume - 향수의 향을 시각적 요소로 빗대어 표현하는 검색 웹서비스 (Metaphor + Perfume)
 - Background - 향을 시각화해서 상상해볼 수 없을까? 기존의 경험과 새로운 지식을 조합한 도전
-- Features - 향수 검색, 향수 상세 정보 시각화, 즐겨찾기, 유저 향수 추천, 구독형 메일 서비스
+- Features - 향수 검색, 향수 상세 정보 시각화, 즐겨찾기, 향수 추천, 구독형 메일 서비스
 - Duration - 총 3주 (1주 - 아이디어 구체화 & 설계 / 2주 - 구현 & 배포)
 - Stack - React, D3, NodeJS (Express), Mongo, Redis, Puppeteer 등
 
