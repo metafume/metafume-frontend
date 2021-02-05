@@ -24,6 +24,7 @@ const App = ({
   onLogout,
   onSubscribe,
   user,
+  loading,
   error,
 }) => {
   const history = useHistory();
@@ -59,7 +60,12 @@ const App = ({
           <ProductPageContainer />
         </Route>
         <Route path='/login'>
-          {user ? <Redirect to='/'/> : <Login onLogin={onLogin}/>}
+          {
+            user ?
+            <Redirect to='/'/>
+            :
+            <Login onLogin={onLogin} loading={loading} error={error}/>
+          }
         </Route>
         <Route path='/mypage/:id'>
           {
@@ -85,6 +91,7 @@ App.propTypes = {
   onLogin: PropTypes.func.isRequired,
   onLogout: PropTypes.func.isRequired,
   onSubscribe: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
   error: PropTypes.object,
   user: PropTypes.shape({
     _id: PropTypes.string.isRequired,
