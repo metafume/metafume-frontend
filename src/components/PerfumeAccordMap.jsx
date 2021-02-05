@@ -20,17 +20,6 @@ const ProductImage = styled.img`
   animation: 2s ${fadeIn};
 `;
 
-const dragEventListener = d3.drag()
-  .on('start', function () {
-    d3.select(this).raise().attr('stroke', 'white');
-  })
-  .on('drag', function (e) {
-    d3.select(this).attr('cx', e.x).attr('cy', e.y);
-  })
-  .on('end', function () {
-    d3.select(this).raise().attr('stroke', null);
-  });
-
 const AccordMap = ({ accords, imageUrl, name }) => {
   const svgRef = useRef();
 
@@ -57,9 +46,21 @@ const AccordMap = ({ accords, imageUrl, name }) => {
       .ease(d3.easeQuadOut)
       .duration(1200)
       .style('opacity', d3.randomUniform(0.5, 1))
-      .style('transform', `translate(${d3.randomUniform(-40, 40)()}px, ${d3.randomUniform(-40, 40)()}px)`)
+      .style('transform', `translate(${d3.randomUniform(-40, 40)()}px,
+         ${d3.randomUniform(-40, 40)()}px)`)
       .on('end', () => self.call(animateCircle));
   };
+
+  const dragEventListener = d3.drag()
+    .on('start', function () {
+      d3.select(this).raise().attr('stroke', 'white');
+    })
+    .on('drag', function (e) {
+      d3.select(this).attr('cx', e.x).attr('cy', e.y);
+    })
+    .on('end', function () {
+      d3.select(this).raise().attr('stroke', null);
+    });
 
   useEffect(() => {
     const svg = d3.select(svgRef.current);
