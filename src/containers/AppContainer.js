@@ -8,6 +8,7 @@ import App from '../components/App';
 
 const mapStateToProps = state => ({
   user: state.user?.profile,
+  loading: state.user.loading,
   error: state.user.error,
 });
 
