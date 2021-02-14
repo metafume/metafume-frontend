@@ -137,8 +137,10 @@ const StyledFaHeart = styled(FaHeart)`
   transform: scale(1.3);
 `;
 
+// The promise is a controls that handles time for loading test
+const DELAY = 1000;
 const fetchProductDetail = async path => {
-  await new Promise(res => setTimeout(res, 1000));
+  await new Promise(res => setTimeout(res, DELAY));
   return api.getProductDetail(path);
 };
 
