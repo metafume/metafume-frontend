@@ -20,7 +20,9 @@ const ProductImage = styled.img`
   animation: 2s ${fadeIn};
 `;
 
-const AccordMap = ({ accords, imageUrl, name }) => {
+const CIRCLE_DENSITY = '30';
+
+const PerfumeAccordMap = ({ accords, imageUrl, name }) => {
   const svgRef = useRef();
 
   const animateCircle = circle => {
@@ -63,6 +65,7 @@ const AccordMap = ({ accords, imageUrl, name }) => {
     });
 
   useEffect(() => {
+    if (!accords.length) return;
     const svg = d3.select(svgRef.current);
 
     svg
@@ -71,7 +74,7 @@ const AccordMap = ({ accords, imageUrl, name }) => {
       .attr('viewBox', [0, 0, 300, 300])
       .style('background-color', theme.provincialPink);
 
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < CIRCLE_DENSITY; i++) {
       accords.forEach(accord => {
         const circle = svg.append('circle')
           .attr('r', 0)
@@ -103,10 +106,10 @@ const AccordMap = ({ accords, imageUrl, name }) => {
   );
 };
 
-AccordMap.propTypes = {
+PerfumeAccordMap.propTypes = {
   accords: PropTypes.array.isRequired,
   name: PropTypes.string.isRequired,
   imageUrl: PropTypes.string.isRequired,
 };
 
-export default AccordMap;
+export default PerfumeAccordMap;
