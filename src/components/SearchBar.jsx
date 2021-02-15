@@ -44,12 +44,12 @@ const SearchBar = ({ onSearch, onResetSearch }) => {
     if (keyword?.[1]) setValue(keyword[1]);
   }, []);
 
-  const handleOnChange = ev => {
+  const handleInputValueChange = ev => {
     setValue(ev.target.value);
     if (ev.target.value === '') onResetSearch();
   };
 
-  const handleOnSubmit = ev => {
+  const handleSubmit = ev => {
     ev.preventDefault();
 
     if (value.length <= 2) return;
@@ -58,14 +58,14 @@ const SearchBar = ({ onSearch, onResetSearch }) => {
   };
 
   return (
-    <StyledForm onSubmit={handleOnSubmit}>
+    <StyledForm onSubmit={handleSubmit}>
       <StyledInput
         type='search'
         placeholder='search'
         value={value}
-        onChange={handleOnChange}
+        onChange={handleInputValueChange}
       />
-      <Button onClick={handleOnSubmit}>Find</Button>
+      <Button onClick={handleSubmit}>Find</Button>
     </StyledForm>
   );
 };

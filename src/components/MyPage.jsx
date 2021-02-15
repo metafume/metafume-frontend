@@ -68,7 +68,7 @@ const MyPage = ({ onLogout, onSubscribe, user }) => {
     shouldRetryOnError: false,
   });
 
-  const handleOnSubscribe = () => {
+  const handleSubscription = () => {
     if (isSubscribed) onSubscribe(userId, false);
     else onSubscribe(userId, true);
   };
@@ -81,7 +81,7 @@ const MyPage = ({ onLogout, onSubscribe, user }) => {
         <p>{email}</p>
         <Button onClick={onLogout} background='salmon'>Logout</Button>
         <Button
-          onClick={handleOnSubscribe}
+          onClick={handleSubscription}
           background={isSubscribed ? 'gray' : 'black'}
         >
           {isSubscribed ? 'Unsubscribe' : 'Subscribe'}
