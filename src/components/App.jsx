@@ -38,7 +38,7 @@ const App = ({
     if (getToken()) deleteToken();
   }, [error]);
 
-  const handleOnClickMyPage = () => {
+  const handleClickToMyPage = () => {
     if (user) history.push(`/mypage/${user._id}`);
     else history.push('/login');
   };
@@ -48,7 +48,7 @@ const App = ({
       <Reset />
       <GlobalStyle />
       <Header userName={user?.name}/>
-      <FloatingButton onClick={handleOnClickMyPage}>
+      <FloatingButton onClick={handleClickToMyPage}>
         My Page
       </FloatingButton>
       <Suspense fallback={<CenterWrapper><Loading /></CenterWrapper>}>

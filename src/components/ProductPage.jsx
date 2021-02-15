@@ -160,7 +160,7 @@ const ProductPage = ({ onAdd, onDelete, user }) => {
     if (isMyFavorite) setFavorite(true);
   }, [user]);
 
-  const handleOnFavorite = () => {
+  const toggleFavorite = () => {
     if (isFavorite) {
       setFavorite(false);
       onDelete(user._id, productId);
@@ -188,12 +188,12 @@ const ProductPage = ({ onAdd, onDelete, user }) => {
           user && (isFavorite ?
           <StyledFaHeart
             size={28}
-            onClick={handleOnFavorite}
+            onClick={toggleFavorite}
           />
           :
           <StyledFaRegHeart
             size={28}
-            onClick={handleOnFavorite}
+            onClick={toggleFavorite}
           />)
         }
         <h6>{product.brand}</h6>
