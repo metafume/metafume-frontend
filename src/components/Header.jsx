@@ -27,7 +27,7 @@ const Wrapper = styled.header`
   span {
     position: absolute;
     right: 24px;
-    color: ${({ theme }) => theme.persianGreen};
+    color: ${({ theme }) => theme.hunterGreen};
   }
 `;
 

@@ -13,6 +13,7 @@ import PerfumeAccordMap from './PerfumeAccordMap';
 import CenterWrapper from './CenterWrapper';
 
 import { FaRegHeart, FaHeart } from 'react-icons/fa';
+import { float } from './styles/keyframes';
 
 const TextWrapper = styled.div`
   width: 100%;
@@ -22,7 +23,7 @@ const TextWrapper = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: ${({ theme }) => theme.spaceShuttle};
+  color: ${({ theme }) => theme.hunterGreen};
   animation: 1s ${fadeIn} ease-in-out;
 
   h1 {
@@ -47,13 +48,15 @@ const AccordsWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  background-color: ${({ theme }) => theme.rangoonGreen};
+  background-color: ${({ theme }) => theme.hunterGreen};
+  border-bottom: 1px solid ${({ theme }) => theme.spaceShuttle};
   animation: 1s ${fadeIn} ease-in-out;
+  position: relative;
 
   h3 {
     width: 100%;
-    padding-top: 24px;
-    font-size: 24px;
+    padding: 24px 0;
+    font-size: 21px;
     text-align: center;
     color: ${({ theme }) => theme.americano};
   }
@@ -71,32 +74,48 @@ const NotesWrapper = styled.div`
 
   h3 {
     width: 100%;
-    padding-top: 24px;
-    margin-bottom: 24px;
-    font-size: 24px;
+    padding: 24px 0;
+    font-size: 21px;
     text-align: center;
     color: ${({ theme }) => theme.americano};
   }
 `;
 
 const AccordBox = styled.div`
-  width: ${({ size }) => `${200 * parseInt(size) / 100}px`};
-  height: ${({ size }) => `${200 * parseInt(size) / 100}px`};
+  width: ${({ size }) => `${300 * parseInt(size) / 100}px`};
+  height: ${({ size }) => `${300 * parseInt(size) / 100}px`};
   border: 1px ${({ background }) => background} solid;
   color: ${({ background }) => background};
   background-color: transparent;
   border-radius: 50%;
-  margin: 24px;
+  margin: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: ${({ size }) => `${parseInt(size) / 3.4}px`};
   text-align: center;
   transition: transform 0.4s, background-color 0.4s, color 0.4s;
+  animation: ${({ size }) => `${300 / parseInt(size)}s`} ${float} infinite;
+  opacity: 0.7;
 
   &:hover {
     background-color: ${({ background }) => background};
     color: ${({ color }) => color};
-    transform: scale(1.1);
+    transform: scale(1.06);
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-10px);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
   }
 `;
 
@@ -104,18 +123,15 @@ const NoteBox = styled.div`
   width: 260px;
   height: 90px;
   margin: 24px;
-  border-radius: 18px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: ${({ theme }) => theme.americano} 2px dotted;
   color: ${({ theme }) => theme.americano};
-  font-size: 18px;
+  font-size: 36px;
   text-align: center;
   transition: border 0.6s, color 0.6s;
 
   &:hover {
-    border: ${({ theme }) => theme.provincialPink} 2px solid;
     color: ${({ theme }) => theme.provincialPink};
   }
 `;
