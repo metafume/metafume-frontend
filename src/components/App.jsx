@@ -18,15 +18,7 @@ const ProductPageContainer = lazy(() => import('../containers/ProductPageContain
 const MyPage = lazy(() => import('./MyPage'));
 const Login = lazy(() => import('./Login'));
 
-const App = ({
-  onLoad,
-  onLogin,
-  onLogout,
-  onSubscribe,
-  user,
-  loading,
-  error,
-}) => {
+const App = ({ onLoad, onLogin, onLogout, onSubscribe, user, loading, error }) => {
   const history = useHistory();
 
   useEffect(() => {
@@ -47,40 +39,38 @@ const App = ({
     <ThemeProvider theme={theme}>
       <Reset />
       <GlobalStyle />
-      <Header userName={user?.name}/>
-      <FloatingButton onClick={handleClickToMyPage}>
-        My Page
-      </FloatingButton>
-      <Suspense fallback={<CenterWrapper><Loading /></CenterWrapper>}>
-      <Switch>
-        <Route exact path='/'>
-          <MainContainer />
-        </Route>
-        <Route path='/product/:brand/:id'>
-          <ProductPageContainer />
-        </Route>
-        <Route path='/login'>
-          {
-            user ?
-            <Redirect to='/'/>
-            :
-            <Login onLogin={onLogin} loading={loading} error={error}/>
-          }
-        </Route>
-        <Route path='/mypage/:id'>
-          {
-            user ?
-            <MyPage
-              user={user}
-              onLogout={onLogout}
-              onSubscribe={onSubscribe}
-            />
-            :
-            <Redirect to='/login'/>
-          }
-        </Route>
-        <Redirect to='/'/>
-      </Switch>
+      <Header />
+      <FloatingButton onClick={handleClickToMyPage}>My Page</FloatingButton>
+      <Suspense
+        fallback={
+          <CenterWrapper>
+            <Loading />
+          </CenterWrapper>
+        }
+      >
+        <Switch>
+          <Route exact path='/'>
+            <MainContainer />
+          </Route>
+          <Route path='/product/:brand/:id'>
+            <ProductPageContainer />
+          </Route>
+          <Route path='/login'>
+            {user ? (
+              <Redirect to='/' />
+            ) : (
+              <Login onLogin={onLogin} loading={loading} error={error} />
+            )}
+          </Route>
+          <Route path='/mypage/:id'>
+            {user ? (
+              <MyPage user={user} onLogout={onLogout} onSubscribe={onSubscribe} />
+            ) : (
+              <Redirect to='/login' />
+            )}
+          </Route>
+          <Redirect to='/' />
+        </Switch>
       </Suspense>
     </ThemeProvider>
   );
@@ -99,12 +89,14 @@ App.propTypes = {
     email: PropTypes.string.isRequired,
     photoUrl: PropTypes.string.isRequired,
     isSubscribed: PropTypes.bool.isRequired,
-    myFavorite: PropTypes.arrayOf(PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      productId: PropTypes.string.isRequired,
-      brand: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-    })).isRequired,
+    myFavorite: PropTypes.arrayOf(
+      PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        productId: PropTypes.string.isRequired,
+        brand: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+      }),
+    ).isRequired,
   }),
 };
 
