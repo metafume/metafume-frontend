@@ -22,7 +22,7 @@ const StyledLoader = styled(Loader)`
 const Loading = ({ children }) => {
   return (
     <Wrapper>
-      {children || <StyledLoader type='Circles' color={theme.hunterGreen} width={55} height={55}/>}
+      {children || <StyledLoader type='Circles' color={theme.hunterGreen} width={55} height={55} />}
     </Wrapper>
   );
 };

@@ -5,12 +5,10 @@ import Product from './Product';
 const ProductList = ({ list, mode }) => {
   return (
     <>
-      {
-        list.length > 0 &&
+      {list.length > 0 &&
         list.map(item => {
-          return <Product key={item.productId} product={item} mode={mode}/>;
-        })
-      }
+          return <Product key={item.productId} product={item} mode={mode} />;
+        })}
     </>
   );
 };

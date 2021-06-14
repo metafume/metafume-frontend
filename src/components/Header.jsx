@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { slideDown } from './styles/keyframes';
@@ -31,18 +30,13 @@ const Wrapper = styled.header`
   }
 `;
 
-const Header = ({ userName }) => {
+const Header = () => {
   return (
     <Wrapper>
       <div />
-      <Logo size={21}/>
-      <span>{userName && `Hi, ${userName}`}</span>
+      <Logo size={21} />
     </Wrapper>
   );
-};
-
-Header.propTypes = {
-  userName: PropTypes.string,
 };
 
 export default Header;

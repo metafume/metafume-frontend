@@ -22,7 +22,5 @@ function* watchLoginStart() {
 }
 
 export default function* userSagas() {
-  yield all([
-    call(watchLoginStart),
-  ]);
+  yield all([call(watchLoginStart)]);
 }

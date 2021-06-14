@@ -57,10 +57,10 @@ const SearchWrapper = styled(Wrapper)`
 
 const StyledLink = styled(Link)`
   display: flex;
-  flex-direction: ${({ mode }) => mode === 'search' ? 'row' : 'column'};
+  flex-direction: ${({ mode }) => (mode === 'search' ? 'row' : 'column')};
   align-items: center;
   text-decoration: none;
-  font-size: ${({ mode }) => mode === 'search' ? '24px' : '18px'};
+  font-size: ${({ mode }) => (mode === 'search' ? '24px' : '18px')};
   text-align: center;
   color: black;
 `;
@@ -71,10 +71,10 @@ const Product = ({ product, mode }) => {
     <ConditionalWrapper Wrapper={mode === 'search' ? SearchWrapper : Wrapper}>
       <StyledLink to={`/product/${brand}/${productId}`} mode={mode}>
         <div>
-          <img draggable={false} src={imageUrl} alt={name}/>
-         </div>
-         <h6>{brand}</h6>
-         <h2>{name}</h2>
+          <img draggable={false} src={imageUrl} alt={name} />
+        </div>
+        <h6>{brand}</h6>
+        <h2>{name}</h2>
       </StyledLink>
     </ConditionalWrapper>
   );

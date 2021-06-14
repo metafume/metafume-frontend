@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const StyledLink = styled(Link)`
   all: unset;
   cursor: pointer;
-  font-size: ${({ size }) => size ? `${size}px` : '32px'};
+  font-size: ${({ size }) => (size ? `${size}px` : '32px')};
   font-weight: 800;
   color: black;
 `;

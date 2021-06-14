@@ -14,7 +14,7 @@ describe('<Header />', () => {
 
   it('renders header with user name', async () => {
     const userName = 'userName';
-    const { getByText } = renderWithRouter(<Header userName={userName}/>);
+    const { getByText } = renderWithRouter(<Header userName={userName} />);
 
     expect(getByText(LOGO)).toBeInTheDocument();
     expect(getByText(/userName/)).toBeInTheDocument();

@@ -16,7 +16,7 @@ describe('<MyPage />', () => {
   };
 
   it('renders my page with the user', () => {
-    const { getByText } = renderWithRouter(<MyPage {...props}/>);
+    const { getByText } = renderWithRouter(<MyPage {...props} />);
     expect(getByText(props.user.name)).toBeInTheDocument();
     expect(getByText(props.user.email)).toBeInTheDocument();
     expect(getByText('Logout')).toBeInTheDocument();

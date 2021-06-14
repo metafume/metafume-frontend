@@ -30,7 +30,7 @@ const reducers = {
       loading: false,
       error: null,
     }),
-    prepare: user => ({ payload: { user }}),
+    prepare: user => ({ payload: { user } }),
   },
   [LOGIN_USER_FAILURE]: {
     reducer: (state, action) => ({
@@ -38,7 +38,7 @@ const reducers = {
       loading: false,
       error: action.payload.error,
     }),
-    prepare: error => ({ payload: { error }}),
+    prepare: error => ({ payload: { error } }),
   },
   [LOGOUT_USER]: {
     reducer: state => ({ ...state, profile: null }),
@@ -51,17 +51,19 @@ const reducers = {
         myFavorite: [...new Set([...state.profile.myFavorite, action.payload.product])],
       },
     }),
-    prepare: product => ({ payload: { product }}),
+    prepare: product => ({ payload: { product } }),
   },
   [DELETE_USER_FAVORITE]: {
     reducer: (state, action) => ({
       ...state,
       profile: {
         ...state.profile,
-        myFavorite: state.profile.myFavorite.filter(product => product.productId !== action.payload.productId),
+        myFavorite: state.profile.myFavorite.filter(
+          product => product.productId !== action.payload.productId,
+        ),
       },
     }),
-    prepare: productId => ({ payload: { productId }}),
+    prepare: productId => ({ payload: { productId } }),
   },
   [UPDATE_SUBSCRIBTION]: {
     reducer: (state, action) => ({
@@ -71,7 +73,7 @@ const reducers = {
         isSubscribed: action.payload.isSubscribed,
       },
     }),
-    prepare: option => ({ payload: { isSubscribed: option }}),
+    prepare: option => ({ payload: { isSubscribed: option } }),
   },
 };
 

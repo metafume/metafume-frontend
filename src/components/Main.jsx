@@ -96,26 +96,25 @@ const Main = ({ searchList, onSearch, onResetSearch, loading, error }) => {
         <h2>Visualizing your fragrances by color.</h2>
       </TextWrapper>
       <SearchWrapper>
-        <SearchBar onSearch={onSearch} onResetSearch={onResetSearch}/>
+        <SearchBar onSearch={onSearch} onResetSearch={onResetSearch} />
       </SearchWrapper>
       <ResultWrapper>
         {loading && <Loading />}
-        {error && <ErrorBox message={error}/>}
-        {
-          searchList ?
+        {error && <ErrorBox message={error} />}
+        {searchList ? (
           <SearchListWrapper>
-            <VerticalProductList list={searchList}/>
+            <VerticalProductList list={searchList} />
           </SearchListWrapper>
-          :
+        ) : (
           <RecentViewWrapper>
-            {!loading && recentViewList &&
+            {!loading && recentViewList && (
               <>
                 <h3>Latest views</h3>
-                <HorizontalProductList list={recentViewList}/>
+                <HorizontalProductList list={recentViewList} />
               </>
-            }
+            )}
           </RecentViewWrapper>
-        }
+        )}
       </ResultWrapper>
     </Container>
   );
@@ -125,12 +124,14 @@ Main.propTypes = {
   onSearch: PropTypes.func.isRequired,
   onResetSearch: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  searchList: PropTypes.arrayOf(PropTypes.shape({
-    brand: PropTypes.string.isRequired,
-    imageUrl: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    productId: PropTypes.string.isRequired,
-  }).isRequired),
+  searchList: PropTypes.arrayOf(
+    PropTypes.shape({
+      brand: PropTypes.string.isRequired,
+      imageUrl: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      productId: PropTypes.string.isRequired,
+    }).isRequired,
+  ),
   error: PropTypes.string,
 };
 

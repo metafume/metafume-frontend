@@ -11,11 +11,7 @@ const Wrapper = styled.div`
 `;
 
 const CenterWrapper = ({ children }) => {
-  return (
-    <Wrapper>
-      {children}
-    </Wrapper>
-  );
+  return <Wrapper>{children}</Wrapper>;
 };
 
 CenterWrapper.propTypes = {

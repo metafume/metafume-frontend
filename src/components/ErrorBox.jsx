@@ -13,7 +13,11 @@ const ErrorBox = ({ message, back }) => {
   return (
     <Loading>
       <StyledParameter>{message || 'No message'}</StyledParameter>
-      {back && <Link to='/' style={{ color: 'black' }}>Back</Link>}
+      {back && (
+        <Link to='/' style={{ color: 'black' }}>
+          Back
+        </Link>
+      )}
     </Loading>
   );
 };

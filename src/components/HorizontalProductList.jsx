@@ -12,18 +12,20 @@ const Wrapper = styled.div`
 const HorizontalProductList = ({ list }) => {
   return (
     <Wrapper>
-      <ProductList list={list}/>
+      <ProductList list={list} />
     </Wrapper>
   );
 };
 
 HorizontalProductList.propTypes = {
-  list: PropTypes.arrayOf(PropTypes.shape({
-    brand: PropTypes.string.isRequired,
-    imageUrl: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    productId: PropTypes.string.isRequired,
-  }).isRequired).isRequired,
+  list: PropTypes.arrayOf(
+    PropTypes.shape({
+      brand: PropTypes.string.isRequired,
+      imageUrl: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      productId: PropTypes.string.isRequired,
+    }).isRequired,
+  ).isRequired,
 };
 
 export default HorizontalProductList;

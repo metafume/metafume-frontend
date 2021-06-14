@@ -37,9 +37,7 @@ const SearchBar = ({ onSearch, onResetSearch }) => {
 
     if (queries.length <= 0) return;
 
-    const keyword = queries
-      .find(query => query.split('=')[0] === 'keyword')
-      ?.split('=');
+    const keyword = queries.find(query => query.split('=')[0] === 'keyword')?.split('=');
 
     if (keyword?.[1]) setValue(keyword[1]);
   }, []);

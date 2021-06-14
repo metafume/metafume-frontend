@@ -82,8 +82,8 @@ const NotesWrapper = styled.div`
 `;
 
 const AccordBox = styled.div`
-  width: ${({ size }) => `${300 * parseInt(size) / 100}px`};
-  height: ${({ size }) => `${300 * parseInt(size) / 100}px`};
+  width: ${({ size }) => `${(300 * parseInt(size)) / 100}px`};
+  height: ${({ size }) => `${(300 * parseInt(size)) / 100}px`};
   border: 1px ${({ background }) => background} solid;
   color: ${({ background }) => background};
   background-color: transparent;
@@ -170,8 +170,7 @@ const ProductPage = ({ onAdd, onDelete, user }) => {
   useEffect(() => {
     if (!user) return;
 
-    const isMyFavorite =
-      user.myFavorite.some(product => product?.productId === productId);
+    const isMyFavorite = user.myFavorite.some(product => product?.productId === productId);
 
     if (isMyFavorite) setFavorite(true);
   }, [user]);
@@ -186,32 +185,32 @@ const ProductPage = ({ onAdd, onDelete, user }) => {
     }
   };
 
-  if (error) return <CenterWrapper><ErrorBox message={error?.message} back/></CenterWrapper>;
-  if (!product) return <CenterWrapper><Loading /></CenterWrapper>;
+  if (error)
+    return (
+      <CenterWrapper>
+        <ErrorBox message={error?.message} back />
+      </CenterWrapper>
+    );
+  if (!product)
+    return (
+      <CenterWrapper>
+        <Loading />
+      </CenterWrapper>
+    );
 
   return (
     <>
-      <PerfumeAccordMap
-        name={product.name}
-        imageUrl={product.imageUrl}
-        accords={product.accords}
-      />
+      <PerfumeAccordMap name={product.name} imageUrl={product.imageUrl} accords={product.accords} />
       <TextWrapper
         background={product.accords[0].styles.background}
         color={product.accords[0].styles.color}
       >
-        {
-          user && (isFavorite ?
-          <StyledFaHeart
-            size={28}
-            onClick={toggleFavorite}
-          />
-          :
-          <StyledFaRegHeart
-            size={28}
-            onClick={toggleFavorite}
-          />)
-        }
+        {user &&
+          (isFavorite ? (
+            <StyledFaHeart size={28} onClick={toggleFavorite} />
+          ) : (
+            <StyledFaRegHeart size={28} onClick={toggleFavorite} />
+          ))}
         <h6>{product.brand}</h6>
         <h1>{product.name}</h1>
         <p>{product.description}</p>
@@ -254,12 +253,14 @@ ProductPage.propTypes = {
     email: PropTypes.string.isRequired,
     photoUrl: PropTypes.string.isRequired,
     isSubscribed: PropTypes.bool.isRequired,
-    myFavorite: PropTypes.arrayOf(PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      productId: PropTypes.string.isRequired,
-      brand: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-    })).isRequired,
+    myFavorite: PropTypes.arrayOf(
+      PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        productId: PropTypes.string.isRequired,
+        brand: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+      }),
+    ).isRequired,
   }),
 };
 

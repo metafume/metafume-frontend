@@ -7,7 +7,7 @@ describe('<Login />', () => {
   afterEach(cleanup);
 
   it('renders Login', () => {
-    const { getByText } = render(<Login onLogin={() => {}}/>);
+    const { getByText } = render(<Login onLogin={() => {}} />);
 
     expect(getByText('Login')).toBeInTheDocument();
     expect(getByText(GOOGLE_LOGIN)).toBeInTheDocument();
@@ -15,7 +15,7 @@ describe('<Login />', () => {
 
   it('should work click event correctly', () => {
     const onLogin = jest.fn();
-    const { getByText } = render(<Login onLogin={onLogin}/>);
+    const { getByText } = render(<Login onLogin={onLogin} />);
 
     fireEvent.click(getByText(GOOGLE_LOGIN));
     fireEvent.click(getByText(GOOGLE_LOGIN));

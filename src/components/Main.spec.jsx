@@ -10,7 +10,7 @@ describe('<Main />', () => {
   };
 
   it('renders main page', () => {
-    const { getByText } = renderWithRouter(<Main {...props}/>);
+    const { getByText } = renderWithRouter(<Main {...props} />);
     expect(getByText(MAIN_TEXT)).toBeInTheDocument();
     expect(getByText('Find')).toBeInTheDocument();
   });

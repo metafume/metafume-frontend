@@ -18,7 +18,7 @@ const reducers = {
       loading: true,
       error: null,
     }),
-    prepare: keyword => ({ payload: { keyword }}),
+    prepare: keyword => ({ payload: { keyword } }),
   },
   [ADD_SEARCH_LIST_SUCCESS]: {
     reducer: (state, action) => ({
@@ -35,7 +35,7 @@ const reducers = {
       loading: false,
       error: action.payload.error,
     }),
-    prepare: error => ({ payload: { error }}),
+    prepare: error => ({ payload: { error } }),
   },
   [DELETE_SEARCH_LIST]: {
     reducer: state => ({ ...state, list: null }),
