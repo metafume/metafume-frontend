@@ -48,12 +48,16 @@ const PerfumeAccordMap = ({ accords, imageUrl, name }) => {
       .ease(d3.easeQuadOut)
       .duration(1200)
       .style('opacity', d3.randomUniform(0.5, 1))
-      .style('transform', `translate(${d3.randomUniform(-40, 40)()}px,
-         ${d3.randomUniform(-40, 40)()}px)`)
+      .style(
+        'transform',
+        `translate(${d3.randomUniform(-40, 40)()}px,
+         ${d3.randomUniform(-40, 40)()}px)`,
+      )
       .on('end', () => self.call(animateCircle));
   };
 
-  const dragEventListener = d3.drag()
+  const dragEventListener = d3
+    .drag()
     .on('start', function () {
       d3.select(this).raise().attr('stroke', 'white');
     })
@@ -76,7 +80,8 @@ const PerfumeAccordMap = ({ accords, imageUrl, name }) => {
 
     for (let i = 0; i < CIRCLE_DENSITY; i++) {
       accords.forEach(accord => {
-        const circle = svg.append('circle')
+        const circle = svg
+          .append('circle')
           .attr('r', 0)
           .attr('cx', 150)
           .attr('cy', 220)
@@ -89,7 +94,7 @@ const PerfumeAccordMap = ({ accords, imageUrl, name }) => {
           .duration(d3.randomUniform(2000, 10000))
           .attr('cx', d3.randomUniform(-200, 500))
           .attr('cy', d3.randomUniform(20, 260))
-          .attr('r', 40 * parseInt(accord.styles.width) / 200)
+          .attr('r', (40 * parseInt(accord.styles.width)) / 200)
           .attr('opacity', 0.9)
           .on('end', () => circle.call(animateCircle));
       });
@@ -100,8 +105,8 @@ const PerfumeAccordMap = ({ accords, imageUrl, name }) => {
 
   return (
     <Wrapper>
-      <ProductImage draggable={false} src={imageUrl} alt={name}/>
-      <svg ref={svgRef}/>
+      <ProductImage draggable={false} src={imageUrl} alt={name} />
+      <svg ref={svgRef} />
     </Wrapper>
   );
 };

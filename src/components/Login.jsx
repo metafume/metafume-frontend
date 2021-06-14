@@ -30,13 +30,8 @@ const Login = ({ onLogin, loading, error }) => {
   return (
     <Wrapper>
       <h1>Login</h1>
-      {
-        loading ?
-        <Loading />
-        :
-        <Button onClick={onLogin}>Login with Google</Button>
-      }
-      {error && <ErrorBox message={error.message}/>}
+      {loading ? <Loading /> : <Button onClick={onLogin}>Login with Google</Button>}
+      {error && <ErrorBox message={error.message} />}
     </Wrapper>
   );
 };

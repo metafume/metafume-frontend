@@ -76,27 +76,26 @@ const MyPage = ({ onLogout, onSubscribe, user }) => {
   return (
     <Wrapper>
       <ProfileWrapper>
-        <img className='thumbnail' src={photoUrl} alt='thumbnail'/>
+        <img className='thumbnail' src={photoUrl} alt='thumbnail' />
         <h1>{name}</h1>
         <p>{email}</p>
-        <Button onClick={onLogout} background='salmon'>Logout</Button>
-        <Button
-          onClick={handleSubscription}
-          background={isSubscribed ? 'gray' : 'black'}
-        >
+        <Button onClick={onLogout} background='salmon'>
+          Logout
+        </Button>
+        <Button onClick={handleSubscription} background={isSubscribed ? 'gray' : 'black'}>
           {isSubscribed ? 'Unsubscribe' : 'Subscribe'}
         </Button>
       </ProfileWrapper>
       <ListWrapper>
         <h3>My favorites</h3>
-        <HorizontalProductList list={myFavorite}/>
+        <HorizontalProductList list={myFavorite} />
       </ListWrapper>
-      {recommendList &&
+      {recommendList && (
         <ListWrapper>
           <h3>Recommend for you</h3>
-          <HorizontalProductList list={recommendList}/>
+          <HorizontalProductList list={recommendList} />
         </ListWrapper>
-      }
+      )}
     </Wrapper>
   );
 };
@@ -110,12 +109,14 @@ MyPage.propTypes = {
     email: PropTypes.string.isRequired,
     photoUrl: PropTypes.string.isRequired,
     isSubscribed: PropTypes.bool.isRequired,
-    myFavorite: PropTypes.arrayOf(PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      productId: PropTypes.string.isRequired,
-      brand: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-    })).isRequired,
+    myFavorite: PropTypes.arrayOf(
+      PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        productId: PropTypes.string.isRequired,
+        brand: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+      }),
+    ).isRequired,
   }).isRequired,
 };
 

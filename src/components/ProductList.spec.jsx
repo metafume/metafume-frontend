@@ -17,7 +17,7 @@ describe('<ProductList />', () => {
   });
 
   it('renders list correctly', () => {
-    const { container } = renderWithRouter(<ProductList list={LIST}/>);
+    const { container } = renderWithRouter(<ProductList list={LIST} />);
     expect(container.querySelectorAll('a').length).toEqual(10);
   });
 });

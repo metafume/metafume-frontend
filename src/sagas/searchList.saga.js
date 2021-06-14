@@ -18,7 +18,5 @@ function* watchSearchKeywordStart() {
 }
 
 export default function* searchListSagas() {
-  yield all([
-    call(watchSearchKeywordStart),
-  ]);
+  yield all([call(watchSearchKeywordStart)]);
 }

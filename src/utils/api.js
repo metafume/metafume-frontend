@@ -45,27 +45,33 @@ const tokenLogin = async token => {
 
 const addFavorite = async (userId, productId) => {
   const result = await axios.post(`/users/${userId}/favorite/${productId}`, null, {
-    headers: { 'x-access-token': getToken() } },
-  );
+    headers: { 'x-access-token': getToken() },
+  });
   return result.data;
 };
 
 const deleteFavorite = async (userId, productId) => {
   const result = await axios.delete(`/users/${userId}/favorite/${productId}`, {
-    headers: { 'x-access-token': getToken() } },
-  );
+    headers: { 'x-access-token': getToken() },
+  });
   return result.data;
 };
 
 const getRecommendList = async userId => {
   const result = await axios.get(`/users/${userId}/recommendation`, {
-    headers: { 'x-access-token': getToken() } });
+    headers: { 'x-access-token': getToken() },
+  });
   return result.data;
 };
 
 const subscribeMail = async (userId, option) => {
-  const result = await axios.put(`/users/${userId}/subscription`, { option }, {
-    headers: { 'x-access-token': getToken() } });
+  const result = await axios.put(
+    `/users/${userId}/subscription`,
+    { option },
+    {
+      headers: { 'x-access-token': getToken() },
+    },
+  );
   return result.data;
 };
 

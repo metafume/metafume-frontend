@@ -10,7 +10,7 @@ describe('<Product />', () => {
   };
 
   it('renders product', () => {
-    const { getByText, container } = renderWithRouter(<Product product={PRODUCT}/>);
+    const { getByText, container } = renderWithRouter(<Product product={PRODUCT} />);
     const link = container.querySelector('a');
     const img = container.querySelector('img');
 

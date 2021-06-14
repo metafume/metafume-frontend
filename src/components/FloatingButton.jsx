@@ -18,7 +18,7 @@ const Wrapper = styled.div`
 
   button {
     border-top-left-radius: 24px;
-  };
+  }
 `;
 
 const FloatingButton = ({ onClick, children, background, color }) => {
@@ -29,7 +29,7 @@ const FloatingButton = ({ onClick, children, background, color }) => {
         background={background || theme.persianGreen}
         color={color || theme.whisper}
       >
-      {children}
+        {children}
       </Button>
     </Wrapper>
   );

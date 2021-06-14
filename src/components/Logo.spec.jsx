@@ -13,7 +13,7 @@ describe('<Logo />', () => {
   });
 
   it('shows the props correctly', () => {
-    const { getByText } = renderWithRouter(<Logo size={42}/>);
+    const { getByText } = renderWithRouter(<Logo size={42} />);
     expect(getByText(LOGO).getAttribute('size')).toEqual('42');
   });
 });
